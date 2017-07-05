@@ -9,7 +9,7 @@ class Conexion {
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $conexion->exec("SET CHARACTER SET UTF8");
         } catch (Exception $e) {
-            die('Error') . $e->getMessage();
+            die('Error no se pudo establecer la conexión') . $e->getMessage();
             echo "Linea" . $e->getLine();
         }
 
