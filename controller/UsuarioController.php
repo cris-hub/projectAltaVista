@@ -10,3 +10,5 @@ $usuario = new Usuario();
 $resultado = $usuario->consultar();
 
 
+
+

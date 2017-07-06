@@ -25,7 +25,7 @@ class Usuario {
     public function registrar($cedula, $nombre, $apellido,$fecha, $correo, $estado, $contrasena) {
 
         try {
-            $insert = 'INSERT INTO usuarioS VALUES(:ce, :nom, :ap, :fe, :co, :es, :con)';
+            $insert = 'INSERT INTO usuarios VALUES(:ce, :nom, :ap, :fe, :co, :es, :con)';
             $into = $this->conexion->prepare($insert);
 
 
@@ -65,36 +65,85 @@ class Usuario {
             echo $e->getMessage();
         }
     }
+    
+    public function consultarId($id) {
+
+        try {
+            
+            $sql='SELECT * FROM usuarios WHERE cedula = :ced';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->execute();
+            $resul= $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
 
     //---- FUNÇÃO DE EXCLUSÃO DE DADOS---- //
 
     public function eliminar($id) {
 
-        $delete = 'delete from usuario where id="' . $id . '"';
-
-        $Acesso = new Acesso();
-
-        $Acesso->Conexao();
-
-        $Acesso->Query($delete);
+        try {
+            $delete = 'DELETE FROM usuarios WHERE cedula = :ced';
+            $result = $this->conexion->prepare($delete);
+            $result->bindParam(':ced', $id);
+            $result->execute();
+            echo "Eliminación exitosa";
+        } catch (Exception $exc) {
+            echo "No se pudo eliminar el usuario". $exc->getTraceAsString();
+        }
+    
     }
 
-    //---- FUNÇÃO DE EDIÇÃO DE DADOS---- //
+   public function bloquear($cedula,$est) {
 
-    public function actualzizar($nome, $email, $senha, $id) {
+        try {
+            
+            $update = 'UPDATE usuarios SET estado = :es WHERE cedula = :ced';
 
-        $update = 'update usuario set nome="' . $nome . '", email="' . $email . '" , senha="' . $senha . '" where id="' . $id . '"';
+            $up = $this->conexion->prepare($update);
 
-        $Acesso = new Acesso();
 
-        $Acesso->Conexao();
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':es',$est);
+            $up->execute();
 
-        $Acesso->Query($update);
 
-        $this->Linha = mysqli_num_rows($Acesso->result);
+            echo "Bloqueo exitoso";
+        } catch (Exception $exc) {
+            echo "Bloqueo fallido". $exc->getTraceAsString();
+        }
+        }
+        
+    public function actualizar($cedula, $nombre, $apellido,$fecha, $correo, $contrasena) {
 
-        $this->Result = $Acesso->result;
-    }
+        try {
+            $update = 'UPDATE usuarios set nombre = :nom, apellido = :ap, fechaNacimiento = :fe, correo = :co, contraseña = :con WHERE cedula = :ced';
+
+            $up = $this->conexion->prepare($update);
+
+
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':nom', $nombre);
+            $up->bindParam(':ap', $apellido);
+            $up->bindParam(':fe', $fecha);
+            $up->bindParam(':co', $correo);
+            $up->bindParam(':con', $contrasena);
+
+
+
+            $up->execute();
+
+
+            echo "Actualización exitosa";
+        } catch (Exception $exc) {
+            echo "Actualización fallida". $exc->getTraceAsString();
+        }
+        }
 
 }
 

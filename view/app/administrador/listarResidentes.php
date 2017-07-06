@@ -47,18 +47,25 @@
 
                                                         <td class="text-primary"><?php echo $r['estado']; ?></td>
                                                         <td class="text-primary">
-                                                            <button class="btn btn-primary">
+                                                           <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula']?>">
+                                                                
                                                                 <i class="fa fa-pencil"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary">
-                                                                <i class="fa fa-close"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary">
-                                                                <i class="material-icons">local_movies</i>
-                                                            </button>
-                                                            <button class="btn btn-primary">
+                                                                </a>
+                                                           
+                                                            <a class="btn btn-primary" href="bloquearUsuario.php?id=<?php echo $r['cedula']?>&es=<?php echo $r['estado']?>">
+                                                                
                                                                 <i class="fa fa-lock"></i>
-                                                            </button>
+                                                                </a>
+                                                          <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula']?>">
+                                                                
+                                                                <i class="material-icons">local_movies</i>
+                                                                
+                                                                </a>
+                                                            
+                                                            <a  class="btn btn-primary" href="eliminarUsuario.php?id=<?php echo $r['cedula']?>">
+                                                                
+                                                                <i class="fa fa-trash"></i>
+                                                                </a>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
@@ -80,6 +87,6 @@
     </body>
 
     <?php   
-        include(FOLDER_VIEW . "/template/scripts.php");?>
+        include(FOLDER_VIEW . "/template/scriptsModels.php");?>
 
 </html>
