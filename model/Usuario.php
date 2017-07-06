@@ -22,18 +22,30 @@ class Usuario {
         }
     }
 
-    public function registrar($cedula, $nombre, $apellido, $correo, $estado, $contraseña) {
+    public function registrar($cedula, $nombre, $apellido,$fecha, $correo, $estado, $contrasena) {
 
-        $insert = 'INSERT INTO usuarioS VALUES("' . $cedula . '",'
-                . '"' . $nombre . '",'
-                . '"' . $apellido . '",'
-                . '"' . $correo . '",'
-                . '"' . $estado . '",'
-                . '"' . $contraseña . '")';
+        try {
+            $insert = 'INSERT INTO usuarioS VALUES(:ce, :nom, :ap, :fe, :co, :es, :con)';
+            $into = $this->conexion->prepare($insert);
 
 
+            $into->bindParam(':ce', $cedula);
+            $into->bindParam(':nom', $nombre);
+            $into->bindParam(':ap', $apellido);
+            $into->bindParam(':fe', $fecha);
+            $into->bindParam(':co', $correo);
+            $into->bindParam(':es', $estado);
+            $into->bindParam(':con', $contrasena);
 
-        $this->conexion->Query($insert);
+
+            $into->execute();
+            
+            echo "Inserción exitosa";
+        } catch (Exception $exc) {
+            echo "No se pudo ejecutar la inserción". $exc->getTraceAsString();
+        }
+            
+        
     }
 
     public function consultar() {

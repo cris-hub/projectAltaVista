@@ -22,6 +22,6 @@
 
 </body>
 
-<?php include("./template/scripts.php"); ?>
+<?php include("./template/scriptsModels.php"); ?>
 
 </html>

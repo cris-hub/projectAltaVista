@@ -7,13 +7,13 @@
                         <h4 class="title">Editar Perfil</h4>
                         <p class="category">Modifica tu información personal</p>
                     </div>
+                  <form  role="form" method="GET" >
                     <div class="card-content">
-                        <form>
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Residente</label>
-                                        <input type="text" class="form-control" disabled>
+                                        <input type="text" class="form-control" disabled />
                                     </div>
                                 </div>
 
@@ -23,13 +23,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nombre</label>
-                                        <input type="text" class="form-control" >
+                                        <input type="text" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Apellidos</label>
-                                        <input type="text" class="form-control" >
+                                        <input type="text" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Correo electronico</label>
-                                        <input type="text" class="form-control" >
+                                        <input type="text" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -47,34 +47,37 @@
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Apartamento</label>
-                                        <input type="text" class="form-control" >
+                                        <input type="text" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Contraseña</label>
-                                        <input type="password" class="form-control" >
+                                        <input type="password" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Estado Activo</label>
-                                        <input type="text" class="form-control" disabled>
+                                        <input type="text" class="form-control" disabled />
                                     </div>
                                 </div>
                             </div>
-
-
-                            <button type="submit" class="btn btn-primary pull-right">Actualizar datos</button>
-                            <div class="clearfix"></div>
+                           
+                                
+                            
+                        <div class="clearfix">
+                            
+                                <input id="button" type="submit" name="enviar" class="btn btn-primary pull-right" />
+                        </div>
+                         </div>
                         </form>
-                    </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
-                        <a href="#pablo">
+                        <a href="">
                             <img class="img" src="resources/img/faces/marc.jpg" />
                         </a>
                     </div>
@@ -110,10 +113,9 @@
                     </div>
 
 
-                    <a href="#pablo" class="btn btn-primary btn-round"><i class="fa fa-camera-retro"></i> Cambiar foto</a>
+                    <a href="" class="btn btn-primary btn-round"><i class="fa fa-camera-retro"></i> Cambiar foto</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

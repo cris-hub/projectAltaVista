@@ -1300,10 +1300,7 @@ h2.title {
   position: relative;
   line-height: normal;
 }
-.btn.btn-fab .ripple-container,
-.navbar .navbar-nav > li > a.btn.btn-fab .ripple-container {
-  border-radius: 50%;
-}
+
 .btn.btn-fab.btn-fab-mini, .btn-group-sm .btn.btn-fab,
 .navbar .navbar-nav > li > a.btn.btn-fab.btn-fab-mini, .btn-group-sm
 .navbar .navbar-nav > li > a.btn.btn-fab {
@@ -2707,25 +2704,6 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(156, 39, 176, 0.1);
 }
 
-.withripple {
-  position: relative;
-}
-
-.ripple-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: inherit;
-  pointer-events: none;
-}
-.disabled .ripple-container {
-  display: none;
-}
-
 .ripple {
   position: absolute;
   width: 20px;
@@ -2738,18 +2716,10 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   transform: scale(1);
   transform-origin: 50%;
   opacity: 0;
-  pointer-events: none;
+  
 }
 
-.ripple.ripple-on {
-  transition: opacity 0.15s ease-in 0s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-  opacity: 0.1;
-}
 
-.ripple.ripple-out {
-  transition: opacity 0.1s linear 0s !important;
-  opacity: 0;
-}
 
 .section-dark .nav-pills > li > a, .section-image .nav-pills > li > a {
   color: #999999;
@@ -3694,9 +3664,7 @@ footer .btn {
   color: #3C4858;
   text-decoration: none;
 }
-.card .author a .ripple-container {
-  display: none;
-}
+
 .card .table {
   margin-bottom: 0;
 }
