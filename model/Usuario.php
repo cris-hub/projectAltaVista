@@ -82,7 +82,43 @@ class Usuario {
             echo $e->getMessage();
         }
     }
+    
+    public function consultarRoles($id) {
 
+        try {
+            
+            $sql='SELECT * FROM usuarios_has_roles WHERE usuarios_cc = :ced';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->execute();
+            $resul= $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
+    
+       public function login($id,$con) {
+
+        try {
+            
+            $sql='SELECT * FROM usuarios WHERE cedula = :ced and contraseña = :con';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->bindParam(':con', $con);
+            $consula->execute();
+            $resul= $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
+    
+    
     //---- FUNÇÃO DE EXCLUSÃO DE DADOS---- //
 
     public function eliminar($id) {

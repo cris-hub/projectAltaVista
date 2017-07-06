@@ -62,6 +62,7 @@
 
                         </h2>
                         <i style="color:white; font-family: AmaticSC-Regular; color: #0D7F00">Alta Vista Conjunto Residencial &copy;</i>
+                       
                     </center>
                 </div>
 
@@ -87,14 +88,14 @@
                     <div id="div-forms">
 
                         <!-- Begin # Login Form -->
-                        <form id="login-form">
+                        <form id="login-form" action="../controller/LoginUsuario.php" method="post">
                             <div class="modal-body">
                                 <div id="div-login-msg">
                                     <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                     <span id="text-login-msg">Digite su correo electronico y contraseña</span>
                                 </div>
-                                <input id="login_username" class="form-control" type="text" placeholder="altavista@altavista.com" required>
-                                <input id="login_password" class="form-control" type="password" placeholder="Contraseña" required>
+                                <input id="login_username" class="form-control" type="text" name="ced" id="cedula" placeholder="Cedula" required>
+                                <input id="login_password" class="form-control" type="password" name="con" id="contrasena" placeholder="Contraseña" required>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox"> Recordar mi cuenta
@@ -116,6 +117,9 @@
                         <!-- Begin | Lost Password Form -->
                         <form id="lost-form" style="display:none;">
                             <div class="modal-body">
+                                <div>
+                                    
+                                </div>
                                 <div id="div-lost-msg">
                                     <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
                                     <span id="text-lost-msg">Ingrese su correo </span>

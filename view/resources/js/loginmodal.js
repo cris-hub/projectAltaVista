@@ -23,32 +23,17 @@ $(function() {
             case "login-form":
                 var $lg_username=$('#login_username').val();
                 var $lg_password=$('#login_password').val();
-                if ($lg_username == "ERROR") {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
-                } else {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
-                }
-                return false;
                 break;
             case "lost-form":
                 var $ls_email=$('#lost_email').val();
                 if ($ls_email == "ERROR") {
-                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "error", "glyphicon-remove", "Send error");
-                } else {
-                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "success", "glyphicon-ok", "Send OK");
-                }
-                return false;
+                 
                 break;
             case "register-form":
                 var $rg_username=$('#register_username').val();
                 var $rg_email=$('#register_email').val();
                 var $rg_password=$('#register_password').val();
-                if ($rg_username == "ERROR") {
-                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Register error");
-                } else {
-                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "success", "glyphicon-ok", "Register OK");
-                }
-                return false;
+               
                 break;
             default:
                 return false;
@@ -74,23 +59,23 @@ $(function() {
         });
     }
     
-    function msgFade ($msgId, $msgText) {
-        $msgId.fadeOut($msgAnimateTime, function() {
-            $(this).text($msgText).fadeIn($msgAnimateTime);
-        });
-    }
-    
-    function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
-        var $msgOld = $divTag.text();
-        msgFade($textTag, $msgText);
-        $divTag.addClass($divClass);
-        $iconTag.removeClass("glyphicon-chevron-right");
-        $iconTag.addClass($iconClass + " " + $divClass);
-        setTimeout(function() {
-            msgFade($textTag, $msgOld);
-            $divTag.removeClass($divClass);
-            $iconTag.addClass("glyphicon-chevron-right");
-            $iconTag.removeClass($iconClass + " " + $divClass);
-  		}, $msgShowTime);
-    }
+//    function msgFade ($msgId, $msgText) {
+//        $msgId.fadeOut($msgAnimateTime, function() {
+//            $(this).text($msgText).fadeIn($msgAnimateTime);
+//        });
+//    }
+//    
+//    function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
+//        var $msgOld = $divTag.text();
+//        msgFade($textTag, $msgText);
+//        $divTag.addClass($divClass);
+//        $iconTag.removeClass("glyphicon-chevron-right");
+//        $iconTag.addClass($iconClass + " " + $divClass);
+//        setTimeout(function() {
+//            msgFade($textTag, $msgOld);
+//            $divTag.removeClass($divClass);
+//            $iconTag.addClass("glyphicon-chevron-right");
+//            $iconTag.removeClass($iconClass + " " + $divClass);
+//  		}, $msgShowTime);
+//    }
 });

@@ -6,6 +6,8 @@
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
         require_once (FOLDER_PROJECT . "/controller/usuarioController.php");
+        require_once (FOLDER_PROJECT . "/controller/LoginVerify.php");
+        
         ?>
     </head>
 
@@ -34,6 +36,7 @@
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>Correo</th>
+                                            <th>Fecha de nacimiento</th>
                                             <th>Estado</th>
                                             <th></th>
                                             </thead>
@@ -44,6 +47,7 @@
                                                         <td><?php echo $r['nombre']; ?></td>
                                                         <td><?php echo $r['apellido']; ?></td>
                                                         <td><?php echo $r['correo']; ?></td>
+                                                        <td><?php echo $r['fechaNacimiento']; ?></td>
 
                                                         <td class="text-primary"><?php echo $r['estado']; ?></td>
                                                         <td class="text-primary">
