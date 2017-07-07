@@ -37,6 +37,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo VIEW ?>/app/solicitudes/nuevaSolicitud.php">Enviar solicitud</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/solicitudes/listarSolicitud.php">Ver solicitudes</a></li>
 
 
                 </ul>

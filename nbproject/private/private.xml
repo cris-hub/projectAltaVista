@@ -3,10 +3,42 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/pagos/listarPago.php</file>
             <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/administrador/nuevoUsuario.php</file>
-            <file>file:/C:/xampp/htdocs/projectAltaVista/config/context.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/residente/nuevoPago.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/pagos/cambiarEstado.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/controller/PagoController.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/residente/insertarPago.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/residente/consultarPago.php</file>
             <file>file:/C:/xampp/htdocs/projectAltaVista/model/Usuario.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/administrador/modificarUsuario.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/parqueaderos/listarParqueaderos.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/parqueaderos/insertarParqueadero.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/administrador/editarUsuarioController.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/administrador/bloquearUsuario.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/template/sidebar.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/template/sidebarsecretaria.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/administrador/insertarUsuario.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/controller/PlacaController.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/vehiculos/nuevoVehiculo.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/model/Vehiculo.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/model/UsuarioHasApartamento.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/guarda/listarPlaca.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/guarda/nuevoRegistroPlaca.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/controller/LoginUsuario.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/solicitudes/nuevaSolicitud.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/model/Pago.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/parqueaderos/registrarParqueadero.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/guarda/listarPorPlaca.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/administrador/editarUsuario.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/controller/ParqueaderosController.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/controller/ConsultarPlacaController.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/app/administrador/listarResidentes.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/controller/UsuarioHasApartamentoController.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/model/Parqueadero.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/controller/PagosResidenteController.php</file>
             <file>file:/C:/xampp/htdocs/projectAltaVista/controller/UsuarioController.php</file>
+            <file>file:/C:/xampp/htdocs/projectAltaVista/view/template/sidebarresidente.php</file>
         </group>
     </open-files>
 </project-private>

@@ -76,7 +76,7 @@ class Vehiculo {
 
         try {
             
-            $sql='SELECT * FROM vehiculos WHERE cedula = :ced';
+            $sql='SELECT * FROM vehiculos WHERE id_usuarios = :ced';
             $consula = $this->conexion->prepare($sql);
             $consula->bindParam(':ced', $id);
             $consula->execute();

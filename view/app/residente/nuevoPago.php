@@ -85,7 +85,7 @@ session_start();
                                                  <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Soporte Pago</label>
-                                                        <input type="file" name="img" id="img" class="form-control" />
+                                                        <input type="file" name="img" id="img" class="btn btn-primary " />
                                                     </div>
 
                                                 </div>
