@@ -2,16 +2,16 @@
 ob_start();
 
 session_start();
-       
+
 //if($_SESSION['ac']!='activo'){
 //            header('location: ../../../index.php');
 //            session_destroy();
 //            exit();
 //        }
- if (isset($_POST['exit'])) {
-        header('location: ../../../view/index.php');
-        session_destroy();
-        }
+if (isset($_POST['exit'])) {
+    header('location: ../../../view/index.php');
+    session_destroy();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -44,18 +44,18 @@ session_start();
                                         <p class="category">Registra un nuevo vehiculo, para solicitar parqueaderos</p>
                                     </div>
                                     <div class="card-content">
-                                <form  action="insertarVehiculo.php" method="post">
+                                        <form  action="insertarVehiculo.php" method="post">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Marca</label>
-                                                        <input type="text" name="marca" id="marca" class="form-control" />
+                                                        <input type="text" name="marca" id="marca" maxlength="10" class="form-control" required="" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Placa</label>
-                                                        <input type="text" name="placa" id="placa" class="form-control" />
+                                                        <input type="text" name="placa" id="placa" class="form-control" maxlength="9" required="" />
                                                     </div>
                                                 </div>
 
@@ -108,5 +108,4 @@ session_start();
 </html>
 <?php
 ob_end_flush();
-
 ?>

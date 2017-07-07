@@ -75,7 +75,7 @@ if (isset($_POST['registrar'])) {
 
         $vehiculo->registrar($idap, $ti, $re, $va, $fe, $es);
 
-        echo "<script>alert('Registro actualizado satisfactoriamente'); window.location.href='consultarPago.php';</script>";
+        echo "<script>alert('Registro actualizado satisfactoriamente'); window.location.href='nuevoPago.php';</script>";
     } catch (Exception $exc) {
 
         echo "<script>alert('El registro no se pudo actualizar'); window.location.href='consultarPago.php';</script>";

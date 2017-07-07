@@ -87,6 +87,7 @@ session_start();
 
 
                                                  <div class="col-md-6">
+
                                                     
                                                         <label for="img" class="control-label">comprobante</label>
                                                         <input type="file" name="img" id="img" class="" accept="image/*" />

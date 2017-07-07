@@ -70,7 +70,7 @@ class Parqueadero {
 
         try {
 
-            $sql = 'SELECT * FROM usuarios WHERE cedula = :ced';
+            $sql = 'SELECT * FROM parqueaderos WHERE estado = :ced';
             $consula = $this->conexion->prepare($sql);
             $consula->bindParam(':ced', $id);
             $consula->execute();
