@@ -76,7 +76,7 @@ class Vehiculo {
 
         try {
             
-            $sql='SELECT * FROM usuarios WHERE cedula = :ced';
+            $sql='SELECT * FROM vehiculos WHERE cedula = :ced';
             $consula = $this->conexion->prepare($sql);
             $consula->bindParam(':ced', $id);
             $consula->execute();
@@ -104,6 +104,26 @@ class Vehiculo {
         }
     
     }
+     
+    public function consultarExtra($placa){
+            
+            
+        try {
+            
+            $sql='SELECT v.placa, s.fecha_solicitud, p.estado, p.id_parqueadero  FROM vehiculos as v join solicitudes as s on v.id_vehiculo = s.id_vehiculo join parqueaderos as p on s.id_parqueadero= p.id_parqueadero WHERE v.placa = :p LIMIT 0, 1000';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':p', $placa);
+            $consula->execute();
+            $resul= $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+            
+            
+        }
 
 
         
@@ -133,4 +153,6 @@ class Vehiculo {
         }
         }
 
+        
+       
 }
