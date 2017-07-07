@@ -29,7 +29,7 @@ CREATE TABLE `apartamentos` (
   `numero_apto` int(11) NOT NULL,
   `torre` varchar(20) NOT NULL,
   PRIMARY KEY (`id_apartamentos`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='			';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='			';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `apartamentos` (
 
 LOCK TABLES `apartamentos` WRITE;
 /*!40000 ALTER TABLE `apartamentos` DISABLE KEYS */;
-INSERT INTO `apartamentos` VALUES (1,10,'1'),(2,20,'2'),(3,201,'2');
+INSERT INTO `apartamentos` VALUES (1,10,'1'),(2,20,'2'),(3,201,'2'),(4,901,'3');
 /*!40000 ALTER TABLE `apartamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `pagos` (
   PRIMARY KEY (`id_pagos`),
   KEY `fk_apartamento_pagos_idx` (`id_apartamento`),
   CONSTRAINT `fk_apartamento_pagos` FOREIGN KEY (`id_apartamento`) REFERENCES `apartamentos` (`id_apartamentos`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `pagos` (
 
 LOCK TABLES `pagos` WRITE;
 /*!40000 ALTER TABLE `pagos` DISABLE KEYS */;
-INSERT INTO `pagos` VALUES (1,1,'Cheque','',100000,'0000-00-00','Al dia','');
+INSERT INTO `pagos` VALUES (1,1,'Cheque','',100000,'0000-00-00','Al dia',''),(3,2,'Efectivo','0129919299',200000,'01/01/2017','Al dia','');
 /*!40000 ALTER TABLE `pagos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `parqueaderos` (
   `id_parqueadero` int(11) NOT NULL AUTO_INCREMENT,
   `estado` varchar(10) NOT NULL,
   PRIMARY KEY (`id_parqueadero`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `parqueaderos` (
 
 LOCK TABLES `parqueaderos` WRITE;
 /*!40000 ALTER TABLE `parqueaderos` DISABLE KEYS */;
-INSERT INTO `parqueaderos` VALUES (1,'Ocupado'),(23,'Desocupado');
+INSERT INTO `parqueaderos` VALUES (1,'Ocupado'),(23,'Desocupado'),(99,'Ocupado');
 /*!40000 ALTER TABLE `parqueaderos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,12 +134,13 @@ CREATE TABLE `solicitudes` (
   `id_vehiculo` int(11) NOT NULL,
   `id_parqueadero` int(11) NOT NULL,
   `fecha_solicitud` date NOT NULL,
+  `estado` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_solicitude`),
   KEY `fk_parqueaderos_solicitudes_idx` (`id_parqueadero`),
   KEY `fk_vehiculos_solicitudes_idx` (`id_vehiculo`),
   CONSTRAINT `fk_parqueaderos_solicitudes` FOREIGN KEY (`id_parqueadero`) REFERENCES `parqueaderos` (`id_parqueadero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_vehiculos_solicitudes` FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculos` (`id_vehiculo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +149,7 @@ CREATE TABLE `solicitudes` (
 
 LOCK TABLES `solicitudes` WRITE;
 /*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
-INSERT INTO `solicitudes` VALUES (2,1,1,'0000-00-00');
+INSERT INTO `solicitudes` VALUES (2,1,1,'0000-00-00','Activo'),(3,4,99,'2017-07-07','Activo'),(4,4,23,'2017-07-07','Pendiente');
 /*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +178,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (676767,'PAOLO','MICHEL','01/01/2017','koko@gmail.com','Activo','lolo'),(919191,'majsdj','akjsndkal','01/01/2017','kaaa@gmail.co','Activo','lkzjsldakj'),(1923981,'JUANITA','MARIHUANA','01/01/2017','lolo@gmail.com','Activo','Popo'),(5678767,'Cejaz negras','Alquilados','01/01/2017','crackfamily@gmail.com','Bloqueado','porquetevas?'),(9911111,'Odin','El padre de todo','01/01/2017','Pporquetevas?@misnea.com','Activo','popo'),(10101010,'aisjodl','askdl','01/01/2017','koko@gmail.com','Activo','lkas'),(11119999,'MArisol','Cantina','01/01/2017','k@gmail.com','Activo','Loqueishon'),(42424242,'CLORO','MARIHUANA','01/01/2017','koko@gmail.com','Activo','popo'),(55555555,'PRUEBA','PRUEBA','01/01/2017','koko@gmail.com','Activo','popo'),(98632916,'PRUEBA','PRUEBA 2','01/01/2017','koko@gmail.com','Activo','818181'),(100000000,'Rubena','Sinsuegra','','rubena@hotmail.com','Activo','1010'),(888888888,'LOLA','MENDEZ','11/01/2017','Pporquetevas?@misnea.com','Activo','OASDOAK'),(1023032311,'Nicolas','Albarracin','','kolachito@hotmail.com','Activo','2020'),(2147483647,'lkasjdlaj','laksjdlkaj','01/01/2017','lolo@gmail.com','Activo','197823981');
+INSERT INTO `usuarios` VALUES (1292991,'aisjdoi','PPP','01/01/2017','koal@gmail.com','Activo','7821398'),(9911111,'Odon','El padre de todo','01/01/2017','Pporquetevas?@misnea.com','Activo','popo'),(10101010,'aisjodl','askdl','01/01/2017','koko@gmail.com','Activo','lkas'),(98632916,'PRUEBA','PRUEBA 2','01/01/2017','koko@gmail.com','Activo','818181'),(100000000,'Rubena','Sinsuegra','','rubena@hotmail.com','Activo','1010'),(1023032311,'Nicolas','Albarracin','','kolachito@hotmail.com','Activo','2020');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +208,7 @@ CREATE TABLE `usuarios_has_apartamentos` (
 
 LOCK TABLES `usuarios_has_apartamentos` WRITE;
 /*!40000 ALTER TABLE `usuarios_has_apartamentos` DISABLE KEYS */;
-INSERT INTO `usuarios_has_apartamentos` VALUES (98632916,3,'SI','SI'),(100000000,1,'NO','SI'),(1023032311,1,'SI','NO');
+INSERT INTO `usuarios_has_apartamentos` VALUES (1292991,4,'SI','SI'),(9911111,2,'NO','SI'),(10101010,3,'SI','SI'),(98632916,3,'SI','SI'),(100000000,1,'NO','SI'),(1023032311,1,'SI','NO');
 /*!40000 ALTER TABLE `usuarios_has_apartamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +236,7 @@ CREATE TABLE `usuarios_has_roles` (
 
 LOCK TABLES `usuarios_has_roles` WRITE;
 /*!40000 ALTER TABLE `usuarios_has_roles` DISABLE KEYS */;
-INSERT INTO `usuarios_has_roles` VALUES (676767,2),(1923981,2),(42424242,2),(55555555,2),(98632916,2),(100000000,1),(1023032311,2),(2147483647,2);
+INSERT INTO `usuarios_has_roles` VALUES (1292991,2),(9911111,2),(98632916,2),(100000000,1),(1023032311,2);
 /*!40000 ALTER TABLE `usuarios_has_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,7 +256,7 @@ CREATE TABLE `vehiculos` (
   PRIMARY KEY (`id_vehiculo`),
   KEY `fk_usuarios_vehiculos_idx` (`id_usuarios`),
   CONSTRAINT `fk_usuarios_vehiculos` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,7 +265,7 @@ CREATE TABLE `vehiculos` (
 
 LOCK TABLES `vehiculos` WRITE;
 /*!40000 ALTER TABLE `vehiculos` DISABLE KEYS */;
-INSERT INTO `vehiculos` VALUES (1,1023032311,'Automovil','Chevrolet','A15SB');
+INSERT INTO `vehiculos` VALUES (1,1023032311,'Automovil','Chevrolet','A15SB'),(4,9911111,'Moto','Apache 200','KING98'),(5,10101010,'Coche','UF90','LOLA091');
 /*!40000 ALTER TABLE `vehiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,4 +286,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-06 21:25:21
+-- Dump completed on 2017-07-07 13:50:28
