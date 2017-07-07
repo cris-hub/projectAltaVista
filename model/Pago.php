@@ -1,16 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of pago
- *
- * @author Ruben
- */
 class Pago {
 
     private $conexion;
@@ -19,9 +8,9 @@ class Pago {
     private $tipoPago;
     private $referencia;
     private $valor;
-    private $fechaRegistro;
+    private $fecha;
     private $estado;
-    private $urlDocumento;
+    private $url_documento;
 
    public function __CONSTRUCT() {
         require_once(FOLDER_PROJECT . '/config/Conexion.php');
@@ -191,6 +180,26 @@ class Pago {
             echo "Actualización fallida". $exc->getTraceAsString();
         }
         }
+
+    public function estado($cedula, $est) {
+
+        try {
+
+            $update = 'UPDATE pagos SET estado = :es WHERE id_pagos = :ced';
+
+            $up = $this->conexion->prepare($update);
+
+
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':es', $est);
+            $up->execute();
+
+
+            echo "Bloqueo exitoso";
+        } catch (Exception $exc) {
+            echo "Bloqueo fallido" . $exc->getTraceAsString();
+        }
+    }
 
 }
 

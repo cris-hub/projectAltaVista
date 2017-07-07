@@ -22,7 +22,7 @@ class Usuario {
         }
     }
 
-    public function registrar($cedula, $nombre, $apellido,$fecha, $correo, $estado, $contrasena) {
+    public function registrar($cedula, $nombre, $apellido, $fecha, $correo, $estado, $contrasena) {
 
         try {
             $insert = 'INSERT INTO usuarios VALUES(:ce, :nom, :ap, :fe, :co, :es, :con)';
@@ -39,13 +39,11 @@ class Usuario {
 
 
             $into->execute();
-            
+
             echo "Inserción exitosa";
         } catch (Exception $exc) {
-            echo "No se pudo ejecutar la inserción". $exc->getTraceAsString();
+            echo "No se pudo ejecutar la inserción" . $exc->getTraceAsString();
         }
-            
-        
     }
 
     public function consultar() {
@@ -65,16 +63,16 @@ class Usuario {
             echo $e->getMessage();
         }
     }
-    
+
     public function consultarId($id) {
 
         try {
-            
-            $sql='SELECT * FROM usuarios WHERE cedula = :ced';
+
+            $sql = 'SELECT * FROM usuarios WHERE cedula = :ced';
             $consula = $this->conexion->prepare($sql);
             $consula->bindParam(':ced', $id);
             $consula->execute();
-            $resul= $consula->fetchAll();
+            $resul = $consula->fetchAll();
             return $resul;
         } catch (Exception $e) {
 
@@ -82,16 +80,16 @@ class Usuario {
             echo $e->getMessage();
         }
     }
-    
+
     public function consultarRoles($id) {
 
         try {
-            
-            $sql='SELECT * FROM usuarios_has_roles WHERE usuarios_cc = :ced';
+
+            $sql = 'SELECT * FROM usuarios_has_roles WHERE usuarios_cc = :ced';
             $consula = $this->conexion->prepare($sql);
             $consula->bindParam(':ced', $id);
             $consula->execute();
-            $resul= $consula->fetchAll();
+            $resul = $consula->fetchAll();
             return $resul;
         } catch (Exception $e) {
 
@@ -99,17 +97,17 @@ class Usuario {
             echo $e->getMessage();
         }
     }
-    
-       public function login($id,$con) {
+
+    public function login($id, $con) {
 
         try {
-            
-            $sql='SELECT * FROM usuarios WHERE cedula = :ced and contraseña = :con';
+
+            $sql = 'SELECT * FROM usuarios WHERE cedula = :ced and contraseña = :con';
             $consula = $this->conexion->prepare($sql);
             $consula->bindParam(':ced', $id);
             $consula->bindParam(':con', $con);
             $consula->execute();
-            $resul= $consula->fetchAll();
+            $resul = $consula->fetchAll();
             return $resul;
         } catch (Exception $e) {
 
@@ -117,8 +115,7 @@ class Usuario {
             echo $e->getMessage();
         }
     }
-    
-    
+
     //---- FUNÇÃO DE EXCLUSÃO DE DADOS---- //
 
     public function eliminar($id) {
@@ -130,32 +127,31 @@ class Usuario {
             $result->execute();
             echo "Eliminación exitosa";
         } catch (Exception $exc) {
-            echo "No se pudo eliminar el usuario". $exc->getTraceAsString();
+            echo "No se pudo eliminar el usuario" . $exc->getTraceAsString();
         }
-    
     }
 
-   public function bloquear($cedula,$est) {
+    public function bloquear($cedula, $est) {
 
         try {
-            
+
             $update = 'UPDATE usuarios SET estado = :es WHERE cedula = :ced';
 
             $up = $this->conexion->prepare($update);
 
 
             $up->bindParam(':ced', $cedula);
-            $up->bindParam(':es',$est);
+            $up->bindParam(':es', $est);
             $up->execute();
 
 
             echo "Bloqueo exitoso";
         } catch (Exception $exc) {
-            echo "Bloqueo fallido". $exc->getTraceAsString();
+            echo "Bloqueo fallido" . $exc->getTraceAsString();
         }
-        }
-        
-    public function actualizar($cedula, $nombre, $apellido,$fecha, $correo, $contrasena) {
+    }
+
+    public function actualizar($cedula, $nombre, $apellido, $fecha, $correo, $contrasena) {
 
         try {
             $update = 'UPDATE usuarios set nombre = :nom, apellido = :ap, fechaNacimiento = :fe, correo = :co, contraseña = :con WHERE cedula = :ced';
@@ -177,9 +173,9 @@ class Usuario {
 
             echo "Actualización exitosa";
         } catch (Exception $exc) {
-            echo "Actualización fallida". $exc->getTraceAsString();
+            echo "Actualización fallida" . $exc->getTraceAsString();
         }
-        }
+    }
 
 }
 
