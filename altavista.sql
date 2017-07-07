@@ -1,407 +1,288 @@
--- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
+CREATE DATABASE  IF NOT EXISTS `altavista` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `altavista`;
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2017 a las 18:42:44
--- Versión del servidor: 5.6.20
--- Versión de PHP: 5.5.15
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: 127.0.0.1    Database: altavista
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.1.16-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Base de datos: `altavista`
---
-CREATE DATABASE IF NOT EXISTS `altavista` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `altavista`;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `apartamentos`
+-- Table structure for table `apartamentos`
 --
 
-CREATE TABLE IF NOT EXISTS `apartamentos` (
-`id_apartamentos` int(11) NOT NULL,
+DROP TABLE IF EXISTS `apartamentos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `apartamentos` (
+  `id_apartamentos` int(11) NOT NULL AUTO_INCREMENT,
   `numero_apto` int(11) NOT NULL,
-  `torre` varchar(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='			' AUTO_INCREMENT=3 ;
+  `torre` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_apartamentos`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='			';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `apartamentos`
+-- Dumping data for table `apartamentos`
 --
 
-INSERT INTO `apartamentos` (`id_apartamentos`, `numero_apto`, `torre`) VALUES
-(1, 10, '1'),
-(2, 20, '2');
-
--- --------------------------------------------------------
+LOCK TABLES `apartamentos` WRITE;
+/*!40000 ALTER TABLE `apartamentos` DISABLE KEYS */;
+INSERT INTO `apartamentos` VALUES (1,10,'1'),(2,20,'2'),(3,201,'2');
+/*!40000 ALTER TABLE `apartamentos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `pagos`
+-- Table structure for table `pagos`
 --
 
-CREATE TABLE IF NOT EXISTS `pagos` (
-`id_pagos` int(11) NOT NULL,
+DROP TABLE IF EXISTS `pagos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pagos` (
+  `id_pagos` int(11) NOT NULL AUTO_INCREMENT,
   `id_apartamento` int(11) NOT NULL,
-  `tipo_pago` int(11) NOT NULL,
+  `tipo_pago` varchar(25) NOT NULL,
   `referencia` varchar(45) NOT NULL,
   `valor` int(11) NOT NULL,
   `fecha` varchar(25) NOT NULL,
-  `estado` tinyint(4) NOT NULL,
-  `url_documento` varchar(45) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `estado` varchar(10) NOT NULL,
+  `url_documento` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_pagos`),
+  KEY `fk_apartamento_pagos_idx` (`id_apartamento`),
+  CONSTRAINT `fk_apartamento_pagos` FOREIGN KEY (`id_apartamento`) REFERENCES `apartamentos` (`id_apartamentos`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `pagos`
+-- Dumping data for table `pagos`
 --
 
-INSERT INTO `pagos` (`id_pagos`, `id_apartamento`, `tipo_pago`, `referencia`, `valor`, `fecha`, `estado`, `url_documento`) VALUES
-(1, 1, 1, '', 100000, '0000-00-00', 0, '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `parqueaderos`
---
-
-CREATE TABLE IF NOT EXISTS `parqueaderos` (
-`id_parqueadero` int(11) NOT NULL,
-  `estado` tinyint(4) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+LOCK TABLES `pagos` WRITE;
+/*!40000 ALTER TABLE `pagos` DISABLE KEYS */;
+INSERT INTO `pagos` VALUES (1,1,'Cheque','',100000,'0000-00-00','Al dia','');
+/*!40000 ALTER TABLE `pagos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Volcado de datos para la tabla `parqueaderos`
+-- Table structure for table `parqueaderos`
 --
 
-INSERT INTO `parqueaderos` (`id_parqueadero`, `estado`) VALUES
-(1, 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `roles`
---
-
-CREATE TABLE IF NOT EXISTS `roles` (
-`id_roles` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+DROP TABLE IF EXISTS `parqueaderos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parqueaderos` (
+  `id_parqueadero` int(11) NOT NULL AUTO_INCREMENT,
+  `estado` varchar(10) NOT NULL,
+  PRIMARY KEY (`id_parqueadero`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `roles`
+-- Dumping data for table `parqueaderos`
 --
 
-INSERT INTO `roles` (`id_roles`, `nombre`) VALUES
-(1, 'Administrador'),
-(2, 'Residente'),
-(3, 'Guardia'),
-(4, 'Secretaria');
-
--- --------------------------------------------------------
+LOCK TABLES `parqueaderos` WRITE;
+/*!40000 ALTER TABLE `parqueaderos` DISABLE KEYS */;
+INSERT INTO `parqueaderos` VALUES (1,'Ocupado'),(23,'Desocupado');
+/*!40000 ALTER TABLE `parqueaderos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `solicitudes`
+-- Table structure for table `roles`
 --
 
-CREATE TABLE IF NOT EXISTS `solicitudes` (
-`id_solicitude` int(11) NOT NULL,
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles` (
+  `id_roles` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_roles`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Administrador'),(2,'Residente'),(3,'Guardia'),(4,'Secretaria');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `solicitudes`
+--
+
+DROP TABLE IF EXISTS `solicitudes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `solicitudes` (
+  `id_solicitude` int(11) NOT NULL AUTO_INCREMENT,
   `id_vehiculo` int(11) NOT NULL,
   `id_parqueadero` int(11) NOT NULL,
-  `fecha_solicitud` date NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `fecha_solicitud` date NOT NULL,
+  PRIMARY KEY (`id_solicitude`),
+  KEY `fk_parqueaderos_solicitudes_idx` (`id_parqueadero`),
+  KEY `fk_vehiculos_solicitudes_idx` (`id_vehiculo`),
+  CONSTRAINT `fk_parqueaderos_solicitudes` FOREIGN KEY (`id_parqueadero`) REFERENCES `parqueaderos` (`id_parqueadero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vehiculos_solicitudes` FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculos` (`id_vehiculo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `solicitudes`
+-- Dumping data for table `solicitudes`
 --
 
-INSERT INTO `solicitudes` (`id_solicitude`, `id_vehiculo`, `id_parqueadero`, `fecha_solicitud`) VALUES
-(2, 1, 1, '0000-00-00');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipo_pago`
---
-
-CREATE TABLE IF NOT EXISTS `tipo_pago` (
-`id_tipo_pago` int(11) NOT NULL,
-  `nombre` varchar(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+LOCK TABLES `solicitudes` WRITE;
+/*!40000 ALTER TABLE `solicitudes` DISABLE KEYS */;
+INSERT INTO `solicitudes` VALUES (2,1,1,'0000-00-00');
+/*!40000 ALTER TABLE `solicitudes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Volcado de datos para la tabla `tipo_pago`
+-- Table structure for table `usuarios`
 --
 
-INSERT INTO `tipo_pago` (`id_tipo_pago`, `nombre`) VALUES
-(1, 'Efectivo'),
-(2, 'Cheque'),
-(3, 'Tarjeta Credito');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tipo_vehiculo`
---
-
-CREATE TABLE IF NOT EXISTS `tipo_vehiculo` (
-`id_tipo_vehiculo` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `tipo_vehiculo`
---
-
-INSERT INTO `tipo_vehiculo` (`id_tipo_vehiculo`, `nombre`) VALUES
-(1, 'Automovil'),
-(2, 'Motocicleta');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE IF NOT EXISTS `usuarios` (
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios` (
   `cedula` int(11) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `fechaNacimiento` varchar(25) NOT NULL,
   `correo` varchar(30) DEFAULT NULL,
   `estado` varchar(10) NOT NULL DEFAULT 'Activo',
-  `contraseña` varchar(20) NOT NULL
+  `contraseña` varchar(20) NOT NULL,
+  PRIMARY KEY (`cedula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`cedula`, `nombre`, `apellido`, `fechaNacimiento`, `correo`, `estado`, `contraseña`) VALUES
-(100000000, 'Rubena', 'Sinsuegra', '', 'rubena@hotmail.com', 'Activo', '1010'),
-(1023032311, 'Nicolas', 'Albarracin', '', 'kolachito@hotmail.com', 'Activo', '2020');
-
--- --------------------------------------------------------
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (676767,'PAOLO','MICHEL','01/01/2017','koko@gmail.com','Activo','lolo'),(919191,'majsdj','akjsndkal','01/01/2017','kaaa@gmail.co','Activo','lkzjsldakj'),(1923981,'JUANITA','MARIHUANA','01/01/2017','lolo@gmail.com','Activo','Popo'),(5678767,'Cejaz negras','Alquilados','01/01/2017','crackfamily@gmail.com','Bloqueado','porquetevas?'),(9911111,'Odin','El padre de todo','01/01/2017','Pporquetevas?@misnea.com','Activo','popo'),(10101010,'aisjodl','askdl','01/01/2017','koko@gmail.com','Activo','lkas'),(11119999,'MArisol','Cantina','01/01/2017','k@gmail.com','Activo','Loqueishon'),(42424242,'CLORO','MARIHUANA','01/01/2017','koko@gmail.com','Activo','popo'),(55555555,'PRUEBA','PRUEBA','01/01/2017','koko@gmail.com','Activo','popo'),(98632916,'PRUEBA','PRUEBA 2','01/01/2017','koko@gmail.com','Activo','818181'),(100000000,'Rubena','Sinsuegra','','rubena@hotmail.com','Activo','1010'),(888888888,'LOLA','MENDEZ','11/01/2017','Pporquetevas?@misnea.com','Activo','OASDOAK'),(1023032311,'Nicolas','Albarracin','','kolachito@hotmail.com','Activo','2020'),(2147483647,'lkasjdlaj','laksjdlkaj','01/01/2017','lolo@gmail.com','Activo','197823981');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `usuarios_has_apartamentos`
+-- Table structure for table `usuarios_has_apartamentos`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios_has_apartamentos` (
+DROP TABLE IF EXISTS `usuarios_has_apartamentos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios_has_apartamentos` (
   `usuarios_cedula` int(11) NOT NULL,
   `apartamentos_id_apartamentos` int(11) NOT NULL,
   `residente` varchar(2) NOT NULL,
-  `propietario` varchar(2) NOT NULL
+  `propietario` varchar(2) NOT NULL,
+  PRIMARY KEY (`usuarios_cedula`,`apartamentos_id_apartamentos`),
+  KEY `fk_usuarios_has_apartamentos_usuarios1_idx` (`usuarios_cedula`),
+  KEY `fk_apartamento_has_usuarios_idx` (`apartamentos_id_apartamentos`),
+  CONSTRAINT `fk_apartamento_has_usuarios` FOREIGN KEY (`apartamentos_id_apartamentos`) REFERENCES `apartamentos` (`id_apartamentos`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_usuarios_has_apartamentos_usuarios1` FOREIGN KEY (`usuarios_cedula`) REFERENCES `usuarios` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `usuarios_has_apartamentos`
+-- Dumping data for table `usuarios_has_apartamentos`
 --
 
-INSERT INTO `usuarios_has_apartamentos` (`usuarios_cedula`, `apartamentos_id_apartamentos`, `residente`, `propietario`) VALUES
-(100000000, 1, 'NO', 'SI'),
-(1023032311, 1, 'SI', 'NO');
-
--- --------------------------------------------------------
+LOCK TABLES `usuarios_has_apartamentos` WRITE;
+/*!40000 ALTER TABLE `usuarios_has_apartamentos` DISABLE KEYS */;
+INSERT INTO `usuarios_has_apartamentos` VALUES (98632916,3,'SI','SI'),(100000000,1,'NO','SI'),(1023032311,1,'SI','NO');
+/*!40000 ALTER TABLE `usuarios_has_apartamentos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `usuarios_has_roles`
+-- Table structure for table `usuarios_has_roles`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios_has_roles` (
+DROP TABLE IF EXISTS `usuarios_has_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios_has_roles` (
   `usuarios_cc` int(11) NOT NULL,
-  `roles_idroles` int(11) NOT NULL
+  `roles_idroles` int(11) NOT NULL,
+  PRIMARY KEY (`usuarios_cc`,`roles_idroles`),
+  KEY `fk_usuarios_has_roles_roles1_idx` (`roles_idroles`),
+  KEY `fk_usuarios_has_roles_usuarios_idx` (`usuarios_cc`),
+  CONSTRAINT `fk_usuarios_has_roles_roles1` FOREIGN KEY (`roles_idroles`) REFERENCES `roles` (`id_roles`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_usuarios_has_roles_usuarios` FOREIGN KEY (`usuarios_cc`) REFERENCES `usuarios` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `usuarios_has_roles`
+-- Dumping data for table `usuarios_has_roles`
 --
 
-INSERT INTO `usuarios_has_roles` (`usuarios_cc`, `roles_idroles`) VALUES
-(100000000, 1),
-(1023032311, 2);
-
--- --------------------------------------------------------
+LOCK TABLES `usuarios_has_roles` WRITE;
+/*!40000 ALTER TABLE `usuarios_has_roles` DISABLE KEYS */;
+INSERT INTO `usuarios_has_roles` VALUES (676767,2),(1923981,2),(42424242,2),(55555555,2),(98632916,2),(100000000,1),(1023032311,2),(2147483647,2);
+/*!40000 ALTER TABLE `usuarios_has_roles` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estructura de tabla para la tabla `vehiculos`
+-- Table structure for table `vehiculos`
 --
 
-CREATE TABLE IF NOT EXISTS `vehiculos` (
-`id_vehiculo` int(11) NOT NULL,
+DROP TABLE IF EXISTS `vehiculos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vehiculos` (
+  `id_vehiculo` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuarios` int(11) NOT NULL,
-  `tipo_vehiculo` int(11) NOT NULL,
+  `tipo_vehiculo` varchar(10) NOT NULL,
   `marca` varchar(20) NOT NULL,
-  `placa` varchar(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `placa` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_vehiculo`),
+  KEY `fk_usuarios_vehiculos_idx` (`id_usuarios`),
+  CONSTRAINT `fk_usuarios_vehiculos` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Volcado de datos para la tabla `vehiculos`
+-- Dumping data for table `vehiculos`
 --
 
-INSERT INTO `vehiculos` (`id_vehiculo`, `id_usuarios`, `tipo_vehiculo`, `marca`, `placa`) VALUES
-(1, 1023032311, 1, 'Chevrolet', 'A15SB');
+LOCK TABLES `vehiculos` WRITE;
+/*!40000 ALTER TABLE `vehiculos` DISABLE KEYS */;
+INSERT INTO `vehiculos` VALUES (1,1023032311,'Automovil','Chevrolet','A15SB');
+/*!40000 ALTER TABLE `vehiculos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `apartamentos`
---
-ALTER TABLE `apartamentos`
- ADD PRIMARY KEY (`id_apartamentos`);
-
---
--- Indices de la tabla `pagos`
---
-ALTER TABLE `pagos`
- ADD PRIMARY KEY (`id_pagos`), ADD KEY `fk_tipo_pago_pagos_idx` (`tipo_pago`), ADD KEY `fk_apartamento_pagos_idx` (`id_apartamento`);
-
---
--- Indices de la tabla `parqueaderos`
---
-ALTER TABLE `parqueaderos`
- ADD PRIMARY KEY (`id_parqueadero`);
-
---
--- Indices de la tabla `roles`
---
-ALTER TABLE `roles`
- ADD PRIMARY KEY (`id_roles`);
-
---
--- Indices de la tabla `solicitudes`
---
-ALTER TABLE `solicitudes`
- ADD PRIMARY KEY (`id_solicitude`), ADD KEY `fk_parqueaderos_solicitudes_idx` (`id_parqueadero`), ADD KEY `fk_vehiculos_solicitudes_idx` (`id_vehiculo`);
-
---
--- Indices de la tabla `tipo_pago`
---
-ALTER TABLE `tipo_pago`
- ADD PRIMARY KEY (`id_tipo_pago`);
-
---
--- Indices de la tabla `tipo_vehiculo`
---
-ALTER TABLE `tipo_vehiculo`
- ADD PRIMARY KEY (`id_tipo_vehiculo`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
- ADD PRIMARY KEY (`cedula`);
-
---
--- Indices de la tabla `usuarios_has_apartamentos`
---
-ALTER TABLE `usuarios_has_apartamentos`
- ADD PRIMARY KEY (`usuarios_cedula`,`apartamentos_id_apartamentos`), ADD KEY `fk_usuarios_has_apartamentos_usuarios1_idx` (`usuarios_cedula`), ADD KEY `fk_apartamento_has_usuarios_idx` (`apartamentos_id_apartamentos`);
-
---
--- Indices de la tabla `usuarios_has_roles`
---
-ALTER TABLE `usuarios_has_roles`
- ADD PRIMARY KEY (`usuarios_cc`,`roles_idroles`), ADD KEY `fk_usuarios_has_roles_roles1_idx` (`roles_idroles`), ADD KEY `fk_usuarios_has_roles_usuarios_idx` (`usuarios_cc`);
-
---
--- Indices de la tabla `vehiculos`
---
-ALTER TABLE `vehiculos`
- ADD PRIMARY KEY (`id_vehiculo`), ADD KEY `fk_usuarios_vehiculos_idx` (`id_usuarios`), ADD KEY `fk_tipo_vehiculo_vehiculos_idx` (`tipo_vehiculo`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
+-- Dumping events for database 'altavista'
 --
 
 --
--- AUTO_INCREMENT de la tabla `apartamentos`
+-- Dumping routines for database 'altavista'
 --
-ALTER TABLE `apartamentos`
-MODIFY `id_apartamentos` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `pagos`
---
-ALTER TABLE `pagos`
-MODIFY `id_pagos` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT de la tabla `parqueaderos`
---
-ALTER TABLE `parqueaderos`
-MODIFY `id_parqueadero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT de la tabla `roles`
---
-ALTER TABLE `roles`
-MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `solicitudes`
---
-ALTER TABLE `solicitudes`
-MODIFY `id_solicitude` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `tipo_pago`
---
-ALTER TABLE `tipo_pago`
-MODIFY `id_tipo_pago` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT de la tabla `tipo_vehiculo`
---
-ALTER TABLE `tipo_vehiculo`
-MODIFY `id_tipo_vehiculo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `vehiculos`
---
-ALTER TABLE `vehiculos`
-MODIFY `id_vehiculo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- Restricciones para tablas volcadas
---
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Filtros para la tabla `pagos`
---
-ALTER TABLE `pagos`
-ADD CONSTRAINT `fk_apartamento_pagos` FOREIGN KEY (`id_apartamento`) REFERENCES `apartamentos` (`id_apartamentos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_tipo_pago_pagos` FOREIGN KEY (`tipo_pago`) REFERENCES `tipo_pago` (`id_tipo_pago`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `solicitudes`
---
-ALTER TABLE `solicitudes`
-ADD CONSTRAINT `fk_parqueaderos_solicitudes` FOREIGN KEY (`id_parqueadero`) REFERENCES `parqueaderos` (`id_parqueadero`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_vehiculos_solicitudes` FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculos` (`id_vehiculo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `usuarios_has_apartamentos`
---
-ALTER TABLE `usuarios_has_apartamentos`
-ADD CONSTRAINT `fk_apartamento_has_usuarios` FOREIGN KEY (`apartamentos_id_apartamentos`) REFERENCES `apartamentos` (`id_apartamentos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_usuarios_has_apartamentos_usuarios1` FOREIGN KEY (`usuarios_cedula`) REFERENCES `usuarios` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `usuarios_has_roles`
---
-ALTER TABLE `usuarios_has_roles`
-ADD CONSTRAINT `fk_usuarios_has_roles_roles1` FOREIGN KEY (`roles_idroles`) REFERENCES `roles` (`id_roles`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_usuarios_has_roles_usuarios` FOREIGN KEY (`usuarios_cc`) REFERENCES `usuarios` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `vehiculos`
---
-ALTER TABLE `vehiculos`
-ADD CONSTRAINT `fk_tipo_vehiculo_vehiculos` FOREIGN KEY (`tipo_vehiculo`) REFERENCES `tipo_vehiculo` (`id_tipo_vehiculo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_usuarios_vehiculos` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-07-06 21:25:21

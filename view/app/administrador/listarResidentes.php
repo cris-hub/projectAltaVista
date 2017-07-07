@@ -15,7 +15,7 @@
     <body>
 
         <div class="wrapper">
-            <?php include(FOLDER_VIEW . "/template/sidebarsecretaria.php"); ?>
+            <?php include(FOLDER_VIEW . "/template/sidebar.php"); ?>
 
             <div class="main-panel">
 

@@ -5,7 +5,8 @@
         <?php
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
-        require_once (FOLDER_PROJECT . "/controller/UsuarioController.php");
+        require_once (FOLDER_PROJECT . "/controller/usuarioController.php");
+        
         require_once (FOLDER_PROJECT . "/controller/LoginVerify.php");
         
         ?>
@@ -14,7 +15,7 @@
     <body>
 
         <div class="wrapper">
-            <?php include(FOLDER_VIEW . "/template/sidebarsecretaria.php"); ?>
+            <?php include(FOLDER_VIEW . "/template/sidebar.php"); ?>
 
             <div class="main-panel">
 
@@ -36,6 +37,7 @@
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>Correo</th>
+                                            <th>Fecha de nacimiento</th>
                                             <th>Estado</th>
                                             <th></th>
                                             </thead>
@@ -46,21 +48,29 @@
                                                         <td><?php echo $r['nombre']; ?></td>
                                                         <td><?php echo $r['apellido']; ?></td>
                                                         <td><?php echo $r['correo']; ?></td>
+                                                        <td><?php echo $r['fechaNacimiento']; ?></td>
 
                                                         <td class="text-primary"><?php echo $r['estado']; ?></td>
                                                         <td class="text-primary">
-                                                            <button class="btn btn-primary">
+                                                           <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula']?>">
+                                                                
                                                                 <i class="fa fa-pencil"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary">
-                                                                <i class="fa fa-close"></i>
-                                                            </button>
-                                                            <button class="btn btn-primary">
-                                                                <i class="material-icons">local_movies</i>
-                                                            </button>
-                                                            <button class="btn btn-primary">
+                                                                </a>
+                                                           
+                                                            <a class="btn btn-primary" href="bloquearUsuario.php?id=<?php echo $r['cedula']?>&es=<?php echo $r['estado']?>">
+                                                                
                                                                 <i class="fa fa-lock"></i>
-                                                            </button>
+                                                                </a>
+                                                          <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula']?>">
+                                                                
+                                                                <i class="material-icons">local_movies</i>
+                                                                
+                                                                </a>
+                                                            
+                                                            <a  class="btn btn-primary" href="eliminarUsuario.php?id=<?php echo $r['cedula']?>">
+                                                                
+                                                                <i class="fa fa-trash"></i>
+                                                                </a>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
@@ -81,6 +91,7 @@
 
     </body>
 
-    <?php include(FOLDER_VIEW . "/template/scripts.php"); ?>
+    <?php   
+        include(FOLDER_VIEW . "/template/scriptsModels.php");?>
 
 </html>

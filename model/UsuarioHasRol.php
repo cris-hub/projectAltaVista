@@ -12,49 +12,174 @@
  * @author Ruben
  */
 class UsuarioHasRol {
-    private $pdo;
+    private $conexion;
     
     private $usuarioCedula;
     private $idRol;
     
+     public function __CONSTRUCT() {
+        require_once(FOLDER_PROJECT . '/config/Conexion.php');
+        try {
+            $this->conexion = Conexion::conectar();
+        } catch (Exception $exc) {
+            die($exc->getMessage());
+        }
+    }
+
+    public function registrar($us, $rol) {
+
+        try {
+            $insert = 'INSERT INTO usuarios_has_roles VALUES(:us, :rol)';
+            $into = $this->conexion->prepare($insert);
+
+
+            $into->bindParam(':us', $us);
+            $into->bindParam(':rol', $rol);
+     
+           
+
+
+            $into->execute();
+            
+            echo "Inserción exitosa";
+        } catch (Exception $exc) {
+            echo "No se pudo ejecutar la inserción". $exc->getTraceAsString();
+        }
+            
+        
+    }
+
+    public function consultar() {
+
+        try {
+            $result = array();
+
+            $consula = $this->conexion->query("SELECT * FROM apartamentos");
+
+            while ($filas = $consula->fetch(PDO::FETCH_ASSOC)) {
+                $this->result[] = $filas;
+            }
+            return $this->result;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
     
-    function __construct() {
-        
+    public function consultarId($id) {
+
         try {
-            $this->pdo = Database::StartUp();
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            
+            $sql='SELECT * FROM usuarios WHERE cedula = :ced';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->execute();
+            $resul= $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
         }
-            
     }
-    function getUsuarioCedula() {
-        return $this->usuarioCedula;
-    }
+    
+    public function consultarRoles($id) {
 
-    function getIdRol() {
-        return $this->idRol;
-    }
-
-    function setUsuarioCedula($usuarioCedula) {
-        $this->usuarioCedula = $usuarioCedula;
-    }
-
-    function setIdRol($idRol) {
-        $this->idRol = $idRol;
-    }
-
-    public function registrar($ur){
-            
         try {
-            $sql = "INSERT INTO usuarios_has_roles VALUES(?, ?)";
-
-
-            $this->pdo->prepare($sql)->execute(array($ur->usuarioCedula, $ur->idRol));
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
-        }
             
-        
+            $sql='SELECT * FROM usuarios_has_roles WHERE usuarios_cc = :ced';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->execute();
+            $resul= $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
     }
+    
+       public function login($id,$con) {
+
+        try {
+            
+            $sql='SELECT * FROM usuarios WHERE cedula = :ced and contraseña = :con';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->bindParam(':con', $con);
+            $consula->execute();
+            $resul= $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
+    
+    
+    //---- FUNÇÃO DE EXCLUSÃO DE DADOS---- //
+
+    public function eliminar($id) {
+
+        try {
+            $delete = 'DELETE FROM usuarios WHERE cedula = :ced';
+            $result = $this->conexion->prepare($delete);
+            $result->bindParam(':ced', $id);
+            $result->execute();
+            echo "Eliminación exitosa";
+        } catch (Exception $exc) {
+            echo "No se pudo eliminar el usuario". $exc->getTraceAsString();
+        }
+    
+    }
+
+   public function bloquear($cedula,$est) {
+
+        try {
+            
+            $update = 'UPDATE usuarios SET estado = :es WHERE cedula = :ced';
+
+            $up = $this->conexion->prepare($update);
+
+
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':es',$est);
+            $up->execute();
+
+
+            echo "Bloqueo exitoso";
+        } catch (Exception $exc) {
+            echo "Bloqueo fallido". $exc->getTraceAsString();
+        }
+        }
+        
+    public function actualizar($cedula, $nombre, $apellido,$fecha, $correo, $contrasena) {
+
+        try {
+            $update = 'UPDATE usuarios set nombre = :nom, apellido = :ap, fechaNacimiento = :fe, correo = :co, contraseña = :con WHERE cedula = :ced';
+
+            $up = $this->conexion->prepare($update);
+
+
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':nom', $nombre);
+            $up->bindParam(':ap', $apellido);
+            $up->bindParam(':fe', $fecha);
+            $up->bindParam(':co', $correo);
+            $up->bindParam(':con', $contrasena);
+
+
+
+            $up->execute();
+
+
+            echo "Actualización exitosa";
+        } catch (Exception $exc) {
+            echo "Actualización fallida". $exc->getTraceAsString();
+        }
+        }
 
 }
