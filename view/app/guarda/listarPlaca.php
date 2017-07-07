@@ -34,7 +34,7 @@ session_start();
     <body>
 
         <div class="wrapper">
-            <?php include(FOLDER_VIEW . "/template/sidebar.php"); ?>
+            <?php include(FOLDER_VIEW . "/template/sidebarguarda.php"); ?>
 
             <div class="main-panel">
 
