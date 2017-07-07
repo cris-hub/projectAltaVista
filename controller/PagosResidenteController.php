@@ -11,9 +11,9 @@ class PagosResidenteController {
         $this->model = new Pago();
     }
 
-    public function listar() {
+    public function consultar() {
 
-        $resultado = $this->model->mostrarPagos();
+        $resultado = $this->model->consultar();
 
 
 

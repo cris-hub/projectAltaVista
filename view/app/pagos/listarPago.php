@@ -45,7 +45,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php $pago = new PagosResidenteController() ?>
-                                                <?php foreach ($pago->listar() as $r): ?>
+                                                <?php foreach ($pago->consultar() as $r): ?>
                                                     <tr>
                                                         <td><?php echo $r['id_pagos']; ?></td>
                                                         <td><?php echo $r['id_apartamento']; ?></td>
@@ -59,7 +59,7 @@
 
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
-                                                            <a  class="btn btn-primary"href="cambiarEstado.php?id=<?php echo $r['id_pagos'] ?>&es=<?php echo $r['estado'] ?>">
+                                                            <a  class="btn btn-primary" href="cambiarEstado.php?id=<?php echo $r['id_pagos'] ?>&es=<?php echo $r['estado'] ?>">
 
                                                                 <i class="fa fa-lock"></i>
                                                             </a>
