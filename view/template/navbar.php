@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-transparent navbar-absolute">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -32,10 +33,13 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                    <form method="POST" enctype="multipart/form-data">
+                    
+                    <button class="btn btn-primary" type="submit" name="exit">
                         <i class="material-icons">exit_to_app</i>
                         <p class="hidden-lg hidden-md">salir de la aplicacion</p>
-                    </a>
+                    </button>
+                    </form>
                 </li>
             </ul>
 

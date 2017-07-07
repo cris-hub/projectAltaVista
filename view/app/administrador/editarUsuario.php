@@ -1,4 +1,19 @@
-<!doctype html>
+<?php
+ob_start();
+session_start();
+       
+if($_SESSION['cedula']=='' &&   $_SESSION['contrasena']=='' && $_SESSION['rol']=''){
+            header('location: ../../../index.php');
+            session_destroy();
+        }
+ if (isset($_POST['exit'])) {
+        $_SESSION['cedula']='';
+        $_SESSION['contrasena']='';
+        $_SESSION['rol']='';
+        header('location: ../../../view/index.php');
+        session_destroy();
+        }
+?><!doctype html>
 <html lang="en">
 
     <head>
@@ -103,3 +118,6 @@
 <?php include(FOLDER_VIEW . "/template/scriptsModels.php"); ?>
 
 </html>
+<?php
+ob_end_flush();
+?>

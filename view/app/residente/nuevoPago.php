@@ -2,12 +2,12 @@
 ob_start();
 
 session_start();
-       
-if($_SESSION['ac'!='activo']){
-            header('location: ../../../index.php');
-            session_destroy();
-            exit();
-        }
+//       
+//if($_SESSION['ac']!='activo'){
+//            header('location: ../../index.php');
+//            session_destroy();
+//            
+//        }
  if (isset($_POST['exit'])) {
         header('location: ../../../view/index.php');
         session_destroy();
@@ -20,7 +20,7 @@ if($_SESSION['ac'!='activo']){
         <?php
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
-        require_once (FOLDER_PROJECT . "/controller/UsuarioController.php");
+    
         ?>
     </head>
 
@@ -29,7 +29,7 @@ if($_SESSION['ac'!='activo']){
     <body>
 
         <div class="wrapper">
-            <?php include(FOLDER_VIEW . "/template/sidebar.php"); ?>
+            <?php include(FOLDER_VIEW . "/template/sidebarresidente.php"); ?>
 
             <div class="main-panel">
 
@@ -40,22 +40,27 @@ if($_SESSION['ac'!='activo']){
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header" data-background-color="purple">
-                                        <h4 class="title">Nuevo Residente</h4>
-                                        <p class="category">Registra un nuevo residente, para solicitar parqueaderos</p>
+                                        <h4 class="title">Nuevo Registro de pago</h4>
+                                        <p class="category">Registra un nuevo pago ¡Antes de los 15 de cada mes!</p>
                                     </div>
                                     <div class="card-content">
-                                <form  action="insertarVehiculo.php" method="post">
+                                <form  action="insertarPago.php" method="post">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Marca</label>
-                                                        <input type="text" name="marca" id="marca" class="form-control" />
+                                                        <label class="control-label">Tipo de pago</label>
+                                                        <select name="tipo" class="form-control">
+                                                            <option value="Cheque">Cheque</option>
+                                                            <option value="Efectivo">Efectivo</option>
+                                                            <option value="Tarjeta">Tarjeta de credito</option>
+                                                            
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Placa</label>
-                                                        <input type="text" name="placa" id="placa" class="form-control" />
+                                                        <label class="control-label">Referencia de pago</label>
+                                                        <input type="text" name="referencia" id="referencia" class="form-control" />
                                                     </div>
                                                 </div>
 
@@ -66,24 +71,21 @@ if($_SESSION['ac'!='activo']){
 
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Tipo de vehiculo</label>
-                                                        <select name="tipo" class="form-control">
-                                                            <option value="Coche">Coche</option>
-                                                            <option value="Moto">Moto</option>
-                                                        </select>
-
+                                                        <label class="control-label">Valor</label>
+                                                        <input type="number" name="valor" id="valor" class="form-control" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Apartamento</label>
-                                                        <select class="form-control"  name="user" >
-                                                            <?php foreach ($resultado as $ap => $cl): ?>
-                                                                <option name="apar" value="<?php echo $cl['cedula'] ?>" >Cedula:<?php echo $cl['cedula'] ?> - Nombre:<?php echo $cl['nombre'] ?><?php echo $cl['apellido'] ?></option>
+                                                        <label class="control-label">Fecha</label>
+                                                        <input type="text" name="fecha" id="fecha" class="form-control" />
+                                                    </div>
 
-                                                            <?php endforeach; ?>
-
-                                                        </select>
+                                                </div>
+                                                 <div class="col-md-6">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Soporte Pago</label>
+                                                        <input type="file" name="img" id="img" class="form-control" />
                                                     </div>
 
                                                 </div>

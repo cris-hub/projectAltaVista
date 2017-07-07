@@ -1,3 +1,18 @@
+<?php
+ob_start();
+
+session_start();
+       
+if($_SESSION['ac'!='activo']){
+            header('location: ../../../index.php');
+            session_destroy();
+            exit();
+        }
+ if (isset($_POST['exit'])) {
+        header('location: ../../../view/index.php');
+        session_destroy();
+        }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -103,3 +118,6 @@
 <?php include(FOLDER_VIEW . "/template/scriptsModels.php"); ?>
 
 </html>
+<?php
+ob_end_flush();
+?>

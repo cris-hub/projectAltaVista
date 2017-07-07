@@ -1,14 +1,33 @@
 <!doctype html>
+<?php
+ob_start();
+
+session_start();
+       
+if($_SESSION['ac'!='activo']){
+            header('location: ../../../index.php');
+            session_destroy();
+            exit();
+        }
+ if (isset($_POST['exit'])) {
+        header('location: ../../../view/index.php');
+        session_destroy();
+        }
+?>
 <html lang="en">
 
     <head>
         <?php
+        
+         $_SESSION['cedula'];
+         $_SESSION['contrasena'];
+         $_SESSION['rol'];
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
         require_once (FOLDER_PROJECT . "/controller/usuarioController.php");
-        
+        require_once (FOLDER_PROJECT . "/controller/UsuarioHasApartamentoController.php");
+
         require_once (FOLDER_PROJECT . "/controller/LoginVerify.php");
-        
         ?>
     </head>
 
@@ -40,6 +59,11 @@
                                             <th>Fecha de nacimiento</th>
                                             <th>Estado</th>
                                             <th></th>
+                                            <th></th>
+                                            <th>Apartamento</th>
+                                            <th>Residente</th>
+                                            <th>Propietario</th>
+                                            <th>Opciones</th>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($resultado as $r): ?>
@@ -51,26 +75,37 @@
                                                         <td><?php echo $r['fechaNacimiento']; ?></td>
 
                                                         <td class="text-primary"><?php echo $r['estado']; ?></td>
+                                                        <?php $x = $aparta->consultarId($r['cedula']);
+                                                        foreach ($x as $a):
+                                                            ?>
+
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><?php echo $a['apartamentos_id_apartamentos']; ?></td>
+                                                            <td><?php echo $a['residente']; ?></td>
+                                                            <td><?php echo $a['propietario']; ?></td>
+
+                                                        <?php endforeach; ?>
                                                         <td class="text-primary">
-                                                           <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula']?>">
-                                                                
+                                                            <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula'] ?>">
+
                                                                 <i class="fa fa-pencil"></i>
-                                                                </a>
-                                                           
-                                                            <a class="btn btn-primary" href="bloquearUsuario.php?id=<?php echo $r['cedula']?>&es=<?php echo $r['estado']?>">
-                                                                
+                                                            </a>
+
+                                                            <a class="btn btn-primary" href="bloquearUsuario.php?id=<?php echo $r['cedula'] ?>&es=<?php echo $r['estado'] ?>">
+
                                                                 <i class="fa fa-lock"></i>
-                                                                </a>
-                                                          <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula']?>">
-                                                                
+                                                            </a>
+                                                            <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula'] ?>">
+
                                                                 <i class="material-icons">local_movies</i>
-                                                                
-                                                                </a>
-                                                            
-                                                            <a  class="btn btn-primary" href="eliminarUsuario.php?id=<?php echo $r['cedula']?>">
-                                                                
+
+                                                            </a>
+
+                                                            <a  class="btn btn-primary" href="eliminarUsuario.php?id=<?php echo $r['cedula'] ?>">
+
                                                                 <i class="fa fa-trash"></i>
-                                                                </a>
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
@@ -91,7 +126,9 @@
 
     </body>
 
-    <?php   
-        include(FOLDER_VIEW . "/template/scriptsModels.php");?>
+    <?php include(FOLDER_VIEW . "/template/scriptsModels.php"); ?>
 
 </html>
+<?php
+ob_end_flush();
+?>

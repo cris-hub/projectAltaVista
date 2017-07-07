@@ -1,3 +1,18 @@
+<?php
+ob_start();
+
+session_start();
+       
+if($_SESSION['ac'!='activo']){
+            header('location: ../../../index.php');
+            session_destroy();
+            exit();
+        }
+ if (isset($_POST['exit'])) {
+        header('location: ../../../view/index.php');
+        session_destroy();
+        }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -65,7 +80,7 @@
                                                         <label class="control-label">Apartamento</label>
                                                         <select class="form-control"  name="apartamentos" >
                                                             <?php foreach ($apartachos as $ap=>$cl):?>
-                                                            <option name="apar" value="<?php echo $cl['id_apartamentos'] ?>" >Numero apartamento:<?php echo $cl['id_apartamentos'] ?> - Torre:<?php echo $cl['torre'] ?></option>
+                                                            <option name="apar" value="<?php echo $cl['id_apartamentos'] ?>" >Numero apartamento:<?php echo $cl['numero_apto'] ?> - Torre:<?php echo $cl['torre'] ?></option>
                                                             
                                                             <?php endforeach; ?>
                                                           
@@ -129,3 +144,6 @@
     <?php include(FOLDER_VIEW . "/template/scriptsModels.php"); ?>
 
 </html>
+<?php
+ob_end_flush();
+?>
