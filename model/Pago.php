@@ -1,116 +1,41 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of pago
- *
- * @author Ruben
- */
 class Pago {
 
-    private $pdo;
-    private $idPago;
-    private $idApartamento;
-    private $tipoPago;
+    private $conexion;
+    //--------------
+    private $id_pagos;
+    private $id_apartamento;
+    private $tipo_pago;
     private $referencia;
     private $valor;
-    private $fechaRegistro;
+    private $fecha;
     private $estado;
-    private $urlDocumento;
+    private $url_documento;
 
-    function __construct() {
-
+    public function __CONSTRUCT() {
+        require_once(FOLDER_PROJECT . '/config/Conexion.php');
         try {
-            $this->pdo = Database::StartUp();
+            $this->conexion = Conexion::conectar();
         } catch (Exception $exc) {
             die($exc->getMessage());
         }
     }
 
-    function getIdPago() {
-        return $this->idPago;
-    }
-
-    function getIdApartamento() {
-        return $this->idApartamento;
-    }
-
-    function getTipoPago() {
-        return $this->tipoPago;
-    }
-
-    function getReferencia() {
-        return $this->referencia;
-    }
-
-    function getValor() {
-        return $this->valor;
-    }
-
-    function getFechaRegistro() {
-        return $this->fechaRegistro;
-    }
-
-    function getEstado() {
-        return $this->estado;
-    }
-
-    function getUrlDocumento() {
-        return $this->urlDocumento;
-    }
-
-    function setIdPago($idPago) {
-        $this->idPago = $idPago;
-    }
-
-    function setIdApartamento($idApartamento) {
-        $this->idApartamento = $idApartamento;
-    }
-
-    function setTipoPago($tipoPago) {
-        $this->tipoPago = $tipoPago;
-    }
-
-    function setReferencia($referencia) {
-        $this->referencia = $referencia;
-    }
-
-    function setValor($valor) {
-        $this->valor = $valor;
-    }
-
-    function setFechaRegistro($fechaRegistro) {
-        $this->fechaRegistro = $fechaRegistro;
-    }
-
-    function setEstado($estado) {
-        $this->estado = $estado;
-    }
-
-    function setUrlDocumento($urlDocumento) {
-        $this->urlDocumento = $urlDocumento;
-    }
-
     public function registrar($pago) {
         try {
-            $sql = "INSERT INTO pagos 
-		        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO PAGOS (id_apartamento, tipo_pago, referencia, valor, fecha, estado, url_documento)
+		        VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-            $this->pdo->prepare($sql)->execute(
+            $this->conexion->prepare($sql)->execute(
                     array(
-                        $pago->idPago,
-                        $pago->idApartamento,
-                        $pago->tipoPago,
+                        $pago->id_apartamento,
+                        $pago->tipo_pago,
                         $pago->referencia,
                         $pago->valor,
-                        $pago->fechaRegistro,
+                        $pago->fecha,
                         $pago->estado,
-                        $pago->urlDocumento
+                        $pago->url_documento
                     )
             );
         } catch (Exception $e) {
@@ -121,25 +46,25 @@ class Pago {
 
     public function actualizar($pago) {
         try {
-            $sql = "UPDATE pagos SET 
-                    id_apartamento    = ?, 
+            $sql = "UPDATE pagos SET
+                    id_apartamento    = ?,
                     tipo_pago  = ?,
                     referencia           = ?,
-                    valor           = ?, 
+                    valor           = ?,
                     fecha  = ?,
                     estado  = ?,
                     url_documento  = ?
                     WHERE id_pago = ?";
-            $this->pdo->prepare($sql)->execute(
+            $this->conexion->prepare($sql)->execute(
                     array(
-                        $pago->idApartamento,
-                        $pago->tipoPago,
+                        $pago->id_apartamento,
+                        $pago->tipo_pago,
                         $pago->referencia,
                         $pago->valor,
-                        $pago->fechaRegistro,
+                        $pago->fecha,
                         $pago->estado,
-                        $pago->urlDocumento,
-                        $pago->idPago
+                        $pago->url_documento,
+                        $pago->id_pagos
                     )
             );
         } catch (Exception $e) {
@@ -151,14 +76,17 @@ class Pago {
     public function mostrarPagos() {
 
         try {
-            $sql = "SELECT * FROM pagos";
+            $result = array();
 
+            $consula = $this->conexion->query("SELECT * FROM PAGOS");
 
-            $r = $this->pdo->prepare($sql);
-            $r->execute();
-            return $r->fetchAll(PDO::FETCH_OBJ);
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            while ($filas = $consula->fetch(PDO::FETCH_ASSOC)) {
+                $this->result[] = $filas;
+            }
+            return $this->result;
+        } catch (Exception $e) {
+
+            die($e->getMessage());
         }
     }
 
@@ -168,11 +96,31 @@ class Pago {
             $sql = "SELECT * FROM pagos WHERE id_pagos = ?";
 
 
-            $r = $this->pdo->prepare($sql);
+            $r = $this->conexion->prepare($sql);
             $r->execute(array($id));
             return $r->fetch(PDO::FETCH_OBJ);
         } catch (Exception $exc) {
             echo die($exc->getMessage());
+        }
+    }
+
+    public function estado($cedula, $est) {
+
+        try {
+
+            $update = 'UPDATE pagos SET estado = :es WHERE id_pagos = :ced';
+
+            $up = $this->conexion->prepare($update);
+
+
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':es', $est);
+            $up->execute();
+
+
+            echo "Bloqueo exitoso";
+        } catch (Exception $exc) {
+            echo "Bloqueo fallido" . $exc->getTraceAsString();
         }
     }
 

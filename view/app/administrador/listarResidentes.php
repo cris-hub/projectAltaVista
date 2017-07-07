@@ -6,9 +6,8 @@
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
         require_once (FOLDER_PROJECT . "/controller/usuarioController.php");
-        
+
         require_once (FOLDER_PROJECT . "/controller/LoginVerify.php");
-        
         ?>
     </head>
 
@@ -52,25 +51,25 @@
 
                                                         <td class="text-primary"><?php echo $r['estado']; ?></td>
                                                         <td class="text-primary">
-                                                           <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula']?>">
-                                                                
+                                                            <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula'] ?>">
+
                                                                 <i class="fa fa-pencil"></i>
-                                                                </a>
-                                                           
-                                                            <a class="btn btn-primary" href="bloquearUsuario.php?id=<?php echo $r['cedula']?>&es=<?php echo $r['estado']?>">
-                                                                
+                                                            </a>
+
+                                                            <a class="btn btn-primary" href="bloquearUsuario.php?id=<?php echo $r['cedula'] ?>&es=<?php echo $r['estado'] ?>">
+
                                                                 <i class="fa fa-lock"></i>
-                                                                </a>
-                                                          <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula']?>">
-                                                                
+                                                            </a>
+                                                            <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula'] ?>">
+
                                                                 <i class="material-icons">local_movies</i>
-                                                                
-                                                                </a>
-                                                            
-                                                            <a  class="btn btn-primary" href="eliminarUsuario.php?id=<?php echo $r['cedula']?>">
-                                                                
+
+                                                            </a>
+
+                                                            <a  class="btn btn-primary" href="eliminarUsuario.php?id=<?php echo $r['cedula'] ?>">
+
                                                                 <i class="fa fa-trash"></i>
-                                                                </a>
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
@@ -91,7 +90,6 @@
 
     </body>
 
-    <?php   
-        include(FOLDER_VIEW . "/template/scriptsModels.php");?>
+    <?php include(FOLDER_VIEW . "/template/scriptsModels.php"); ?>
 
 </html>
