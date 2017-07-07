@@ -3,11 +3,11 @@ ob_start();
 
 session_start();
        
-if($_SESSION['ac'!='activo']){
-            header('location: ../../../index.php');
-            session_destroy();
-            exit();
-        }
+//if($_SESSION['ac'!='activo']){
+//            header('location: ../../../index.php');
+//            session_destroy();
+//            exit();
+//        }
  if (isset($_POST['exit'])) {
         header('location: ../../../view/index.php');
         session_destroy();

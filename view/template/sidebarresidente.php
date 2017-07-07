@@ -48,7 +48,7 @@
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo VIEW ?>/app/residente/pagos.php">Registrar soporte de pago</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/residente/nuevoPago.php">Registrar soporte de pago</a></li>
 
 
                 </ul>
