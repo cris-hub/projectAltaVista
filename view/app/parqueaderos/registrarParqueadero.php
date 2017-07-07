@@ -2,16 +2,16 @@
 ob_start();
 
 session_start();
-//       
+//
 //if($_SESSION['ac']!='activo'){
 //            header('location: ../../index.php');
 //            session_destroy();
-//            
+//
 //        }
- if (isset($_POST['exit'])) {
-        header('location: ../../../view/index.php');
-        session_destroy();
-        }
+if (isset($_POST['exit'])) {
+    header('location: ../../../view/index.php');
+    session_destroy();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,7 +20,6 @@ session_start();
         <?php
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
-    
         ?>
     </head>
 
@@ -49,7 +48,7 @@ session_start();
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"># Parqueadero</label>
-                                                <input type="text" name="id" id="id" class="form-control" />
+                                                        <input type="number" name="id" id="id" class="form-control" required="" />
 
                                                     </div>
                                                 </div>
@@ -63,10 +62,10 @@ session_start();
                                             </div>
 
 
-                                            
 
-                                                <input type="submit" name="registrar"  class="btn btn-primary pull-right" value="Registrar parqueadero"/>
-                                            
+
+                                            <input type="submit" name="registrar"  class="btn btn-primary pull-right" value="Registrar parqueadero"/>
+
                                         </form>
                                     </div>
                                 </div>
@@ -85,5 +84,4 @@ session_start();
 </html>
 <?php
 ob_end_flush();
-
 ?>
