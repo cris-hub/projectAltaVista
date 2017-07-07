@@ -3,11 +3,11 @@ ob_start();
 
 session_start();
        
-if($_SESSION['ac'!='activo']){
-            header('location: ../../../index.php');
-            session_destroy();
-            exit();
-        }
+//if($_SESSION['ac']!='activo'){
+//            header('location: ../../../index.php');
+//            session_destroy();
+//            exit();
+//        }
  if (isset($_POST['exit'])) {
         header('location: ../../../view/index.php');
         session_destroy();
@@ -40,8 +40,8 @@ if($_SESSION['ac'!='activo']){
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header" data-background-color="purple">
-                                        <h4 class="title">Nuevo Residente</h4>
-                                        <p class="category">Registra un nuevo residente, para solicitar parqueaderos</p>
+                                        <h4 class="title">Nuevo Vehiculo</h4>
+                                        <p class="category">Registra un nuevo vehiculo, para solicitar parqueaderos</p>
                                     </div>
                                     <div class="card-content">
                                 <form  action="insertarVehiculo.php" method="post">

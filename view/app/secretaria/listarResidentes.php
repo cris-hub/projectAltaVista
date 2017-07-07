@@ -1,3 +1,4 @@
+<!doctype html>
 <?php
 ob_start();
 
@@ -13,11 +14,14 @@ session_start();
         session_destroy();
         }
 ?>
-<!doctype html>
 <html lang="en">
 
     <head>
         <?php
+        
+         $_SESSION['cedula'];
+         $_SESSION['contrasena'];
+         $_SESSION['rol'];
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
         require_once (FOLDER_PROJECT . "/controller/usuarioController.php");
@@ -30,7 +34,7 @@ session_start();
     <body>
 
         <div class="wrapper">
-            <?php include(FOLDER_VIEW . "/template/sidebarsecretaria.php"); ?>
+            <?php include(FOLDER_VIEW . "/template/sidebar.php"); ?>
 
             <div class="main-panel">
 
@@ -124,8 +128,7 @@ session_start();
 
     <?php include(FOLDER_VIEW . "/template/scriptsModels.php"); ?>
 
-
 </html>
 <?php
-                                            ob_end_flush();
+ob_end_flush();
 ?>

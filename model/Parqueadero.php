@@ -13,102 +13,171 @@
  */
 class Parqueadero {
 
-    private $pdo;
+    private $conexion;
     private $idParqueadero;
     private $estado;
    
     
 
-    function __construct() {
-
+  public function __CONSTRUCT() {
+        require_once(FOLDER_PROJECT . '/config/Conexion.php');
         try {
-            $this->pdo = Database::StartUp();
+            $this->conexion = Conexion::conectar();
         } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            die($exc->getMessage());
         }
     }
 
+    public function registrar($id, $estado) {
+
+        try {
+            $insert = 'INSERT INTO parqueaderos VALUES(:ce, :nom)';
+            $into = $this->conexion->prepare($insert);
+
+
+            $into->bindParam(':ce', $id);
+            $into->bindParam(':nom', $estado);
     
-    function getIdParqueadero() {
-        return $this->idParqueadero;
+
+
+            $into->execute();
+
+            echo "Inserción exitosa";
+        } catch (Exception $exc) {
+            echo "No se pudo ejecutar la inserción" . $exc->getTraceAsString();
+        }
     }
 
-    function getEstado() {
-        return $this->estado;
-    }
-
-    function setIdParqueadero($idParqueadero) {
-        $this->idParqueadero = $idParqueadero;
-    }
-
-    function setEstado($estado) {
-        $this->estado = $estado;
-    }
-
-            
-
-    
-    public function registrar($p) {
+    public function consultar() {
 
         try {
-            $sql = "INSERT INTO  VALUES(?,?)";
+            $result = array();
 
+            $consula = $this->conexion->query("SELECT * FROM parqueaderos");
 
-            $this->pdo->prepare($sql)->execute(array($p->idParqueadero, $p->estado));
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            while ($filas = $consula->fetch(PDO::FETCH_ASSOC)) {
+                $this->result[] = $filas;
+            }
+            return $this->result;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
         }
     }
 
-    public function editar($p) {
+    public function consultarId($id) {
 
         try {
-            $sql = "UPDATE parqueaderos SET   estado = ? WHERE id_parqueadero = ?";
 
+            $sql = 'SELECT * FROM usuarios WHERE cedula = :ced';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->execute();
+            $resul = $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
 
-            $this->pdo->prepare($sql)->execute(array($p->estado, $p->idParqueadero));
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
         }
     }
-    
-    public function listar(){
-        
+
+    public function consultarRoles($id) {
+
         try {
-            $sql = "SELECT * FROM parqueaderos ";
+
+            $sql = 'SELECT * FROM usuarios_has_roles WHERE usuarios_cc = :ced';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->execute();
+            $resul = $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
+
+    public function login($id, $con) {
+
+        try {
+
+            $sql = 'SELECT * FROM usuarios WHERE cedula = :ced and contraseña = :con';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->bindParam(':con', $con);
+            $consula->execute();
+            $resul = $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
+
+    //---- FUNÇÃO DE EXCLUSÃO DE DADOS---- //
+
+    public function eliminar($id) {
+
+        try {
+            $delete = 'DELETE FROM usuarios WHERE cedula = :ced';
+            $result = $this->conexion->prepare($delete);
+            $result->bindParam(':ced', $id);
+            $result->execute();
+            echo "Eliminación exitosa";
+        } catch (Exception $exc) {
+            echo "No se pudo eliminar el usuario" . $exc->getTraceAsString();
+        }
+    }
+
+    public function bloquear($cedula, $est) {
+
+        try {
+
+            $update = 'UPDATE usuarios SET estado = :es WHERE cedula = :ced';
+
+            $up = $this->conexion->prepare($update);
 
 
-            $r = $this->pdo->prepare($sql);
-            $r->execute();
-            return $r->fetchAll(PDO::FETCH_OBJ);
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':es', $est);
+            $up->execute();
+
+
+            echo "Bloqueo exitoso";
         } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            echo "Bloqueo fallido" . $exc->getTraceAsString();
         }
-        }
-    
-    public function listarParqueadero($id){
-        
+    }
+
+    public function actualizar($cedula, $nombre, $apellido, $fecha, $correo, $contrasena) {
+
         try {
-            $sql = "SELEC * FROM parqueaderos  WHERE id_parqueadero = ?";
-            $r = $this->pdo->prepare($sql);
-            $r->execute(array($id->idParqueadero));
-            return $r->fetch(PDO::FETCH_OBJ);
+            $update = 'UPDATE usuarios set nombre = :nom, apellido = :ap, fechaNacimiento = :fe, correo = :co, contraseña = :con WHERE cedula = :ced';
+
+            $up = $this->conexion->prepare($update);
+
+
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':nom', $nombre);
+            $up->bindParam(':ap', $apellido);
+            $up->bindParam(':fe', $fecha);
+            $up->bindParam(':co', $correo);
+            $up->bindParam(':con', $contrasena);
+
+
+
+            $up->execute();
+
+
+            echo "Actualización exitosa";
         } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            echo "Actualización fallida" . $exc->getTraceAsString();
         }
-        }
-        
-         public function eliminar($id){
-        
-        try {
-            $sql = "DELETE FROM parqueaderos WHERE id_parqueadero = ?";
-            $r = $this->pdo->prepare($sql);
-            $r->execute(array($id->idParqueadero));
-            
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
-        }
-        }
+    }
         
      
 

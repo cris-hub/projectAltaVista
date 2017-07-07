@@ -1,26 +1,32 @@
+<!doctype html>
 <?php
 ob_start();
-
 session_start();
        
-if($_SESSION['ac'!='activo']){
+if($_SESSION['cedula']=='' &&   $_SESSION['contrasena']=='' && $_SESSION['rol']=''){
             header('location: ../../../index.php');
             session_destroy();
-            exit();
         }
  if (isset($_POST['exit'])) {
+        $_SESSION['cedula']='';
+        $_SESSION['contrasena']='';
+        $_SESSION['rol']='';
         header('location: ../../../view/index.php');
         session_destroy();
         }
 ?>
-<!doctype html>
 <html lang="en">
 
     <head>
         <?php
+        
+         $_SESSION['cedula'];
+         $_SESSION['contrasena'];
+         $_SESSION['rol'];
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
         require_once (FOLDER_PROJECT . "/controller/ApartamentosController.php");
+        
         ?>
     </head>
 

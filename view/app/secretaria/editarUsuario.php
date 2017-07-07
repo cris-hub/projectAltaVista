@@ -1,19 +1,19 @@
 <?php
 ob_start();
-
 session_start();
        
-if($_SESSION['ac'!='activo']){
+if($_SESSION['cedula']=='' &&   $_SESSION['contrasena']=='' && $_SESSION['rol']=''){
             header('location: ../../../index.php');
             session_destroy();
-            exit();
         }
  if (isset($_POST['exit'])) {
+        $_SESSION['cedula']='';
+        $_SESSION['contrasena']='';
+        $_SESSION['rol']='';
         header('location: ../../../view/index.php');
         session_destroy();
         }
-?>
-<!doctype html>
+?><!doctype html>
 <html lang="en">
 
     <head>
@@ -79,12 +79,7 @@ if($_SESSION['ac'!='activo']){
                                             </div>
 
                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Apartamento</label>
-                                                        <input type="text" name="apartamento" id="apartamento" class="form-control"   />
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Contraseña</label>

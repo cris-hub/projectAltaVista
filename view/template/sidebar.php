@@ -61,8 +61,8 @@
                     <p class="hidden-lg hidden-md">Notifications</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo VIEW ?>/app/paqueaderos/nuevoParqueadero.php">Registrar Parqueadero</a></li>
-                    <li><a href="<?php echo VIEW ?>/app/parquederos/listarParqueadero.php">Ver Paqueaderos</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/parqueaderos/registrarParqueadero.php">Registrar Parqueadero</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/parqueaderos/listarParqueaderos.php">Ver Paqueaderos</a></li>
 
                 </ul>
             </li>
@@ -73,8 +73,8 @@
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo VIEW ?>/app/parquederos/asignarParqueadero.php">Asignar parqueaderos</a></li>
-                    <li><a href="<?php echo VIEW ?>/app/parquederos/listarParqueaderoDisponible.php">Ver paqueaderos disponibles</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/parqueaderos/asignarParqueadero.php">Asignar parqueaderos</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/parqueaderos/listarParqueaderoDisponible.php">Ver paqueaderos disponibles</a></li>
 
                 </ul>
             </li>
