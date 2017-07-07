@@ -21,21 +21,19 @@ class Pago {
         }
     }
 
-    public function registrar($id, $idap, $ti,$re, $va, $fe, $es,$url) {
+    public function registrar( $idap, $ti,$re, $va, $fe, $es) {
 
         try {
-            $insert = 'INSERT INTO pagos (id_apartamento, tipo_pago, referencia, valor, fecha, estado, url_documento)  VALUES(:ce, :nom, :ap, :fe, :co, :es, :con, :url)';
+            $insert = 'INSERT INTO pagos (id_apartamento, tipo_pago, referencia, valor, fecha, estado)  VALUES( :nom, :ap, :fe, :co, :es, :con)';
             $into = $this->conexion->prepare($insert);
 
-
-            $into->bindParam(':ce', $id);
             $into->bindParam(':nom', $idap);
             $into->bindParam(':ap', $ti);
             $into->bindParam(':fe', $re);
             $into->bindParam(':co', $va);
             $into->bindParam(':es', $fe);
             $into->bindParam(':con', $es);
-            $into->bindParam(':url', $url);
+           
 
 
             $into->execute();

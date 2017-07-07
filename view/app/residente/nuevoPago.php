@@ -72,7 +72,7 @@ session_start();
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Valor</label>
-                                                        <input type="number" name="valor" id="valor" class="form-control" />
+                                                        <input type="text" name="valor" id="valor" class="form-control" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

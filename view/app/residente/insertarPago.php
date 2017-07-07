@@ -21,14 +21,14 @@ foreach ($resl as $value => $a) {
 $apo=$a['apartamentos_id_apartamentos'];
 
 
-$id = null;
+
 $idap = $apo;
 $ti = $_POST['tipo'];
 $re = $_POST['referencia'];
 $va = $_POST['valor'];
 $fe =  $_POST['fecha'];
 $es = "En observacion";
-$url = null;
+
 
 
 
@@ -37,11 +37,11 @@ if (isset($_POST['registrar'])) {
 
     $vehiculo = new Pago();
     try {
-        $vehiculo->registrar($id, $idap, $ti, $re, $va, $fe, $es, $url);
+        $vehiculo->registrar( $idap, $ti, $re, $va, $fe, $es);
        
-       # echo "<script>alert('Registro actualizado satisfactoriamente'); window.location.href='consultarPago.php';</script>";
+       echo "<script>alert('Registro actualizado satisfactoriamente'); window.location.href='consultarPago.php';</script>";
     } catch (Exception $exc) {
      
-       # echo "<script>alert('El registro no se pudo actualizar'); window.location.href='consultarPago.php';</script>";
+       echo "<script>alert('El registro no se pudo actualizar'); window.location.href='consultarPago.php';</script>";
     }
 }

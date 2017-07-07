@@ -16,7 +16,7 @@
         <ul class="nav">
 
             <li class="active">
-                <a href="user.html">
+                <a href="<?php echo VIEW ?>/app/residente/consultarPago.php">
                     <i class="material-icons">person</i>
                     <p>Mi perfil</p>
                 </a>
