@@ -2,7 +2,7 @@
 header('Content-Type: application/vdn.ms-excel');
 header('Content-Disposition: attachment; filename=reporte.xls');
 
-require('../lib/PHPExcel-1.8/Classes/PHPExcel.php');
+require('../../../lib/PHPExcel-1.8/Classes/PHPExcel.php');
 
 $excel = new PHPExcel();
 
@@ -24,7 +24,7 @@ $statement->execute();
 
 $result = $statement->get_result();
 
-while ($row = $result->fetch_array()) $parqueaderos [] = $row ;
+while ($row = $result->fetch_array()) $morosos [] = $row ;
   
 
 $pagina->setCellValue('A1','ID');
@@ -33,9 +33,9 @@ $pagina->setCellValue('B1','ESTADO');
 $pagina->getStyle('A1:B1')->getFont()->setBold(true);
 $pagina->getStyle('A1:B1')->getFont()->setSize(12);
 
-for ($i = 0; $i < count($parqueaderos); $i++) {
-    $pagina->setCellValue('A'. ($i+2), $parqueaderos[$i]['id_parqueadero']);
-    $pagina->setCellValue('B'. ($i+2), $parqueaderos[$i]['estado']);
+for ($i = 0; $i < count($morosos); $i++) {
+    $pagina->setCellValue('A'. ($i+2), $morosos[$i]['id_parqueadero']);
+    $pagina->setCellValue('B'. ($i+2), $morosos[$i]['estado']);
     
 }
 

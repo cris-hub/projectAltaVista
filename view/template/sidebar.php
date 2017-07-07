@@ -92,11 +92,11 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="material-icons">description</i>
-                    <span class="notification">Reportes de apartamentos</span>
+                    <span class="notification">Reportes de apartamentos en mora</span>
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
                  <ul class="dropdown-menu">
-                    <li><a href="<?php echo VIEW ?>/app/reportes/reporteApartamento.php">Generar reporte de los apartamentos</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/reportes/usuariosenmoraexcel.php">Generar reporte de usuarios en mora</a></li>
                         
                         
                         
@@ -109,7 +109,7 @@
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
                 <ul class="dropdown-menu">
-                        <li><a href="<?php echo VIEW ?>/app/reportes/reporteParqueadero.php">Generar reporte de parqueadero</a></li>
+                        <li><a href="<?php echo VIEW ?>/app/reportes/parqueaderosexcel.php">Generar reporte de parqueadero</a></li>
                         
                         
                         
