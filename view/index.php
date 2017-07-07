@@ -51,18 +51,18 @@
                 </nav>
 
                 <div style=" background-color: rgba(200,200,200,0.8);">
-                    <h1 style=" 
+                    <h1 style="
                         margin-top: 300px;
                         margin-left: 600px;
                         color: #0D7F00;
 
                         " > <i style="font-family: AmaticSC-Regular;"> ALTA VISTA   </i></h1>
-                    <center><h2 style=" 
+                    <center><h2 style="
                                 color: white; font-family: Cinzel-Regular;">Conjunto Residencial; un hogar, una familia, paz y tranquilidad
 
                         </h2>
                         <i style="color:white; font-family: AmaticSC-Regular; color: #0D7F00">Alta Vista Conjunto Residencial &copy;</i>
-                       
+
                     </center>
                 </div>
 
@@ -78,7 +78,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" align="center">
-                        <img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
+                        <img class="img-circle" id="img_logo" src="resources/img/logo.png" style="width: 80%;">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
@@ -94,8 +94,8 @@
                                     <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                     <span id="text-login-msg">Digite su correo electronico y contraseña</span>
                                 </div>
-                                <input id="login_username" class="form-control" type="text" name="ced" id="cedula" placeholder="Cedula" required>
-                                <input id="login_password" class="form-control" type="password" name="con" id="contrasena" placeholder="Contraseña" required>
+                                <input id="login_username" class="form-control" type="number"  name="ced" id="cedula" placeholder="Cedula" title="Ingrese su No. documento" minlength="8" required>
+                                <input id="login_password" class="form-control" type="password" name="con" id="contrasena" placeholder="Contraseña" title="Ingrese su contraseña" required>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox"> Recordar mi cuenta
@@ -104,11 +104,11 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="form-group">
-                                    <button type="submit" style="float: left; border-radius: 10px;  background-color: #0D7F00;" class="btn btn-primary btn-lg btn-block">Ingresar</button>
+                                    <button type="submit" style="float: left; border-radius: 10px;  background-color: #B3B9B3;" class="btn btn-primary btn-lg btn-block">Ingresar</button>
                                     <div>
-                                        <button id="login_register_btn" type="button" style="float: left; margin-left: 110px; border-radius: 10px;  background-color: #0D7F00;" class="btn btn-primary btn-lg btn-block">Registrarse</button>
-                                        <button id="login_lost_btn" type="button" style="  margin-left: 60px; top: 5px; border-radius: 10px;  background-color: #0D7F00;" class="btn btn-primary btn-lg btn-block" >¿Olvido su contraseña?</button>
-                                    </div>    
+                                        <button id="login_register_btn" type="button" style="float: left; margin-left: 110px; border-radius: 10px;  background-color: #B3B9B3;" class="btn btn-primary btn-lg btn-block">Registrarse</button>
+                                        <button id="login_lost_btn" type="button" style="  margin-left: 60px; top: 5px; border-radius: 10px;  background-color: #B3B9B3;" class="btn btn-primary btn-lg btn-block" >¿Olvido su contraseña?</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -117,9 +117,6 @@
                         <!-- Begin | Lost Password Form -->
                         <form id="lost-form" style="display:none;">
                             <div class="modal-body">
-                                <div>
-                                    
-                                </div>
                                 <div id="div-lost-msg">
                                     <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
                                     <span id="text-lost-msg">Ingrese su correo </span>
@@ -176,7 +173,7 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             // Javascript method's body can be found in assets/js/demos.js
             demo.initDashboardPageCharts();

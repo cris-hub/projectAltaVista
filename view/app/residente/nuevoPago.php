@@ -20,6 +20,8 @@ session_start();
         <?php
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
+        
+
     
         ?>
     </head>
@@ -44,7 +46,7 @@ session_start();
                                         <p class="category">Registra un nuevo pago ¡Antes de los 15 de cada mes!</p>
                                     </div>
                                     <div class="card-content">
-                                <form  action="insertarPago.php" method="post">
+                                <form  action="insertarPago.php"  enctype="multipart/form-data" method="post">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
@@ -82,11 +84,14 @@ session_start();
                                                     </div>
 
                                                 </div>
+
+
                                                  <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Soporte Pago</label>
-                                                        <input type="file" name="img" id="img" class="btn btn-primary " />
-                                                    </div>
+
+                                                    
+                                                        <label for="img" class="control-label">comprobante</label>
+                                                        <input type="file" name="img" id="img" class="" accept="image/*" />
+                                            
 
                                                 </div>
 

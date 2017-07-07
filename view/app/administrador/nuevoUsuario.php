@@ -2,31 +2,29 @@
 <?php
 ob_start();
 session_start();
-       
-if($_SESSION['cedula']=='' &&   $_SESSION['contrasena']=='' && $_SESSION['rol']=''){
-            header('location: ../../../index.php');
-            session_destroy();
-        }
- if (isset($_POST['exit'])) {
-        $_SESSION['cedula']='';
-        $_SESSION['contrasena']='';
-        $_SESSION['rol']='';
-        header('location: ../../../view/index.php');
-        session_destroy();
-        }
+
+if ($_SESSION['cedula'] == '' && $_SESSION['contrasena'] == '' && $_SESSION['rol'] = '') {
+    header('location: ../../../index.php');
+    session_destroy();
+}
+if (isset($_POST['exit'])) {
+    $_SESSION['cedula'] = '';
+    $_SESSION['contrasena'] = '';
+    $_SESSION['rol'] = '';
+    header('location: ../../../view/index.php');
+    session_destroy();
+}
 ?>
 <html lang="en">
 
     <head>
         <?php
-        
-         $_SESSION['cedula'];
-         $_SESSION['contrasena'];
-         $_SESSION['rol'];
+        $_SESSION['cedula'];
+        $_SESSION['contrasena'];
+        $_SESSION['rol'];
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
         require_once (FOLDER_PROJECT . "/controller/ApartamentosController.php");
-        
         ?>
     </head>
 
@@ -55,7 +53,7 @@ if($_SESSION['cedula']=='' &&   $_SESSION['contrasena']=='' && $_SESSION['rol']=
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Cedula</label>
-                                                        <input type="text" name="cedula" id="cedula" class="form-control" />
+                                                        <input type="number" name="cedula" id="cedula" class="form-control" title="Ingrese su No. documento"  required=""/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -72,61 +70,61 @@ if($_SESSION['cedula']=='' &&   $_SESSION['contrasena']=='' && $_SESSION['rol']=
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Nombre</label>
-                                                        <input type="text" name="nombres" id="nombres" class="form-control" />
+                                                        <input type="text" name="nombres" id="nombres" maxlength="15" class="form-control" required="" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Apellidos</label>
-                                                        <input type="text" name="apellidos" id="apellidos" class="form-control" />
+                                                        <input type="text" name="apellidos" id="apellidos" maxlength="15" class="form-control" required="" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    
-                                                        <label class="control-label">Apartamento</label>
-                                                        <select class="form-control"  name="apartamentos" >
-                                                            <?php foreach ($apartachos as $ap=>$cl):?>
+
+                                                    <label class="control-label">Apartamento</label>
+                                                    <select class="form-control"  name="apartamentos" >
+                                                        <?php foreach ($apartachos as $ap => $cl): ?>
                                                             <option name="apar" value="<?php echo $cl['id_apartamentos'] ?>" >Numero apartamento:<?php echo $cl['numero_apto'] ?> - Torre:<?php echo $cl['torre'] ?></option>
-                                                            
-                                                            <?php endforeach; ?>
-                                                          
-                                                        </select>
-                                                        
-                                                   
+
+                                                        <?php endforeach; ?>
+
+                                                    </select>
+
+
                                                 </div>
                                                 <div class="col-md-3">
-                                                    
-                                                        <label class="control-label">¿Es propietario?</label>
-                                                        <select name="propietario" class="form-control">
-                                                            <option value="SI" >Si</option>
-                                                            <option value="NO" >No</option>
-                                                        </select>
-                                                   
+
+                                                    <label class="control-label">¿Es propietario?</label>
+                                                    <select name="propietario" class="form-control">
+                                                        <option value="SI" >Si</option>
+                                                        <option value="NO" >No</option>
+                                                    </select>
+
                                                 </div>
                                                 <div class="col-md-3">
-                                                    
-                                                        <label class="control-label">¿Es residente?</label>
-                                                        <select name="residente" class="form-control">
-                                                            <option value="SI" >Si</option>
-                                                            <option value="NO" >No</option>
-                                                        </select>
-                                                   
-                                                   
+
+                                                    <label class="control-label">¿Es residente?</label>
+                                                    <select name="residente" class="form-control">
+                                                        <option value="SI" >Si</option>
+                                                        <option value="NO" >No</option>
+                                                    </select>
+
+
                                                 </div>
                                             </div>
 
                                             <div class="row">
-                                                
+
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Contraseña</label>
-                                                        <input type="password" name="contrasena" id="contrasena"  class="form-control" />
+                                                        <input type="password" name="contrasena" id="contrasena"  class="form-control" title="Ingrese su contraseña" required="" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Fecha de nacimiento</label>
-                                                        <input type="text" name="fecha" id="fecha" maxlength="10" minlength="1" placeholder="Fecha de nacimiento: DD/MM/AAAA" class="form-control" >
+                                                        <input type="date" name="fecha" id="fecha" placeholder="Fecha de nacimiento" class="form-control" >
                                                     </div>
                                                 </div>
                                             </div>
