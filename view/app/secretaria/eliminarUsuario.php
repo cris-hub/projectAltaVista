@@ -3,11 +3,11 @@
 include_once("../../../config/context.php");
 require_once(FOLDER_PROJECT . "/model/Usuario.php");
 
-$user = new Usuario();
+$pago = new Usuario();
 $ced = $_GET['id'];
 
 try {
-    $result = $user->eliminar($ced);
+    $result = $pago->eliminar($ced);
 
     echo "Eliminación exitosa";
     header('location: listarResidentes.php');

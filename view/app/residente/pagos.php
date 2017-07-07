@@ -1,18 +1,3 @@
-<?php
-ob_start();
-
-session_start();
-       
-//if($_SESSION['ac'!='activo']){
-//            header('location: ../../../index.php');
-//            session_destroy();
-//            exit();
-//        }
- if (isset($_POST['exit'])) {
-        header('location: ../../../view/index.php');
-        session_destroy();
-        }
-?>
 <!doctype html>
 <html lang="en">
 
@@ -20,8 +5,7 @@ session_start();
         <?php
         include_once ("../../../config/context.php");
         include(FOLDER_VIEW . "/template/head.php");
-        require_once (FOLDER_PROJECT . "/controller/usuarioController.php");
-        require_once (FOLDER_PROJECT . "/controller/UsuarioHasApartamentoController.php");
+        require_once (FOLDER_PROJECT . "/controller/PagosResidenteController.php");
 
         require_once (FOLDER_PROJECT . "/controller/LoginVerify.php");
         ?>
@@ -30,7 +14,7 @@ session_start();
     <body>
 
         <div class="wrapper">
-            <?php include(FOLDER_VIEW . "/template/sidebarsecretaria.php"); ?>
+            <?php include(FOLDER_VIEW . "/template/sidebarresidente.php"); ?>
 
             <div class="main-panel">
 
@@ -42,46 +26,46 @@ session_start();
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header" data-background-color="purple">
-                                        <h4 class="title">Tabla Usuarios</h4>
-                                        <p class="category">Estos son los usuarios del sistema</p>
+                                        <h4 class="title">Consultar Soporte de pagos</h4>
+                                        <p class="category">Pagos realizados</p>
                                     </div>
+
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="btn-group pull-right">
+                                                <a class="btn btn-primary" href="nuevoPago.php?id=<?php echo $r['id_pagos'] ?>">
+                                                    <span>Nuevo Pago  </span>
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
                                     <div class="card-content table-responsive">
                                         <table class="table">
                                             <thead class="text-primary">
-                                            <th>Cedula</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Correo</th>
-                                            <th>Fecha de nacimiento</th>
+                                            <th>No. Pago</th>
+                                            <th>No. Apartamento</th>
+                                            <th>Tipo de Pago</th>
+                                            <th>Fecha</th>
+                                            <th>Valor</th>
                                             <th>Estado</th>
+                                            <th>Comprobante</th>
                                             <th></th>
-                                            <th></th>
-                                            <th>Apartamento</th>
-                                            <th>Residente</th>
-                                            <th>Propietario</th>
-                                            <th>Opciones</th>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($resultado as $r): ?>
+                                                <?php $pago = new PagosResidenteController() ?>
+                                                <?php foreach ($pago->listar() as $r): ?>
                                                     <tr>
-                                                        <td><?php echo $r['cedula']; ?></td>
-                                                        <td><?php echo $r['nombre']; ?></td>
-                                                        <td><?php echo $r['apellido']; ?></td>
-                                                        <td><?php echo $r['correo']; ?></td>
-                                                        <td><?php echo $r['fechaNacimiento']; ?></td>
+                                                        <td><?php echo $r['id_pagos']; ?></td>
+                                                        <td><?php echo $r['id_apartamento']; ?></td>
+                                                        <td><?php echo $r['tipo_pago']; ?></td>
+                                                        <td><?php echo $r['fecha']; ?></td>
+                                                        <td><?php echo $r['valor']; ?></td>
 
                                                         <td class="text-primary"><?php echo $r['estado']; ?></td>
-                                                        <?php $x = $aparta->consultarId($r['cedula']);
-                                                        foreach ($x as $a):
-                                                            ?>
-
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><?php echo $a['apartamentos_id_apartamentos']; ?></td>
-                                                            <td><?php echo $a['residente']; ?></td>
-                                                            <td><?php echo $a['propietario']; ?></td>
-
-                                                        <?php endforeach; ?>
                                                         <td class="text-primary">
                                                             <a class="btn btn-primary" href="editarUsuario.php?id=<?php echo $r['cedula'] ?>">
 
@@ -124,8 +108,4 @@ session_start();
 
     <?php include(FOLDER_VIEW . "/template/scriptsModels.php"); ?>
 
-
 </html>
-<?php
-                                            ob_end_flush();
-?>

@@ -62,7 +62,7 @@ class UsuarioHasApartamento {
         try {
             $result = array();
 
-            $consula = $this->conexion->query("SELECT * FROM apartamentos");
+            $consula = $this->conexion->query("SELECT u.residente, u.propietario FROM usuarios_has_apartamentos as u");
 
             while ($filas = $consula->fetch(PDO::FETCH_ASSOC)) {
                 $this->result[] = $filas;
@@ -79,7 +79,7 @@ class UsuarioHasApartamento {
 
         try {
             
-            $sql='SELECT * FROM usuarios WHERE cedula = :ced';
+            $sql="SELECT u.residente, u.propietario, u.apartamentos_id_apartamentos FROM usuarios_has_apartamentos as u WHERE usuarios_cedula = :ced";
             $consula = $this->conexion->prepare($sql);
             $consula->bindParam(':ced', $id);
             $consula->execute();

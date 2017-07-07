@@ -16,7 +16,7 @@
         <ul class="nav">
 
             <li class="active">
-                <a href="user.html">
+                <a href="<?php echo VIEW ?>/app/residente/consultarPago.php">
                     <i class="material-icons">person</i>
                     <p>Mi perfil</p>
                 </a>
@@ -27,7 +27,7 @@
                     <span class="notification">Residente</span>
                     <p class="hidden-lg hidden-md">usuarios</p>
                 </a>
-                
+
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -37,7 +37,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo VIEW ?>/app/solicitudes/nuevaSolicitud.php">Enviar solicitud</a></li>
-                 
+
 
                 </ul>
             </li>
@@ -48,12 +48,12 @@
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo VIEW ?>/app/pagos/registrarPago.php">Registrar soporte de pago</a></li>
-                   
+                    <li><a href="<?php echo VIEW ?>/app/residente/nuevoPago.php">Registrar soporte de pago</a></li>
+
 
                 </ul>
             </li>
-            
+
             <!--     	<li class="dropdown">
                                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                                           <i class="material-icons">description</i>
@@ -64,8 +64,8 @@
                                                           <li><a href="#">Generar reporte por mora</a></li>
                                                           <li><a href="#">Generar reporte por parqueadero</a></li>
                                                           <li><a href="#">Ver reportes</a></li>
-                                                          
-                                                          
+
+
                                                   </ul>
       </li>
 

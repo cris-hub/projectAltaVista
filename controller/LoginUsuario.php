@@ -5,7 +5,7 @@ require_once("../config/context.php");
 require_once(FOLDER_PROJECT . "/model/Usuario.php");
 require_once(FOLDER_PROJECT . "/controller/LoginVerify.php");
 
-$login = new Login();
+
 $id=$_POST['ced'];
 $con= $_POST['con'];
 
@@ -30,16 +30,54 @@ foreach ($rol as $role) {
 
 if ($value['cedula']==$id && $value['contraseña']==$con && $role['roles_idroles']==1) {
    
-    $login->ce=$value['cedula'];
-    $login->con=$value['contraseña'];
-    $login->ro=$role['roles_idroles'];
+    $ce=$value['cedula'];
+    $con=$value['contraseña'];
+    $ro=$role['roles_idroles'];
+    session_start();
+    $_SESSION['cedula']=$ce;
+    $_SESSION['contrasena']=$con;
+    $_SESSION['rol']=$ro;
+    $_SESSION['ac']='activo';
+    
     header("location: ../view/app/administrador/listarResidentes.php");
     
 }elseif($value['cedula']==$id && $value['contraseña']==$con && $role['roles_idroles']==2){
      
-    $login->ce=$value['cedula'];
-    $login->con=$value['contraseña'];
-    $login->ro=$role['roles_idroles'];
+    $ce=$value['cedula'];
+    $con=$value['contraseña'];
+    $ro=$role['roles_idroles'];
+    session_start();
+    $_SESSION['cedula']=$ce;
+    $_SESSION['contrasena']=$con;
+    $_SESSION['rol']=$ro;
+    $_SESSION['ac']='activo';
+    
+    header("location: ../view/app/residente/consultarPago.php");
+    
+}elseif($value['cedula']==$id && $value['contraseña']==$con && $role['roles_idroles']==3){
+     
+    $ce=$value['cedula'];
+    $con=$value['contraseña'];
+    $ro=$role['roles_idroles'];
+    session_start();
+    $_SESSION['cedula']=$ce;
+    $_SESSION['contrasena']=$con;
+    $_SESSION['rol']=$ro;
+    $_SESSION['ac']='activo';
+    
+    header("location: ../view/app/guarda/listarPorPlaca.php");
+    
+}elseif($value['cedula']==$id && $value['contraseña']==$con && $role['roles_idroles']==4){
+     
+    $ce=$value['cedula'];
+    $con=$value['contraseña'];
+    $ro=$role['roles_idroles'];
+    session_start();
+    $_SESSION['cedula']=$ce;
+    $_SESSION['contrasena']=$con;
+    $_SESSION['rol']=$ro;
+    $_SESSION['ac']='activo';
+    
     header("location: ../view/app/secretaria/listarResidentes.php");
     
 }else{

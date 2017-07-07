@@ -20,118 +20,117 @@ class Vehiculo {
     private $marca;
     private $placa;
 
-    function __construct() {
-
+    public function __CONSTRUCT() {
+        require_once(FOLDER_PROJECT . '/config/Conexion.php');
         try {
-            $this->pdo = Database::StartUp();
+            $this->conexion = Conexion::conectar();
         } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            die($exc->getMessage());
         }
     }
 
-    function getIdVehiculo() {
-        return $this->idVehiculo;
-    }
-
-    function getIdUsuario() {
-        return $this->idUsuario;
-    }
-
-    function getIdTipoVehiculo() {
-        return $this->idTipoVehiculo;
-    }
-
-    function getMarca() {
-        return $this->marca;
-    }
-
-    function getPlaca() {
-        return $this->placa;
-    }
-
-    function setIdVehiculo($idVehiculo) {
-        $this->idVehiculo = $idVehiculo;
-    }
-
-    function setIdUsuario($idUsuario) {
-        $this->idUsuario = $idUsuario;
-    }
-
-    function setIdTipoVehiculo($idTipoVehiculo) {
-        $this->idTipoVehiculo = $idTipoVehiculo;
-    }
-
-    function setMarca($marca) {
-        $this->marca = $marca;
-    }
-
-    function setPlaca($placa) {
-        $this->placa = $placa;
-    }
-
-    
-    public function registrar($v) {
+    public function registrar($id, $idusuario, $tipo ,$marca, $placa) {
 
         try {
-            $sql = "INSERT INTO vehiculos VALUES(?,?,?,?,?)";
+            $insert = 'INSERT INTO vehiculos VALUES(:id, :idu, :tip, :mar, :pla)';
+            $into = $this->conexion->prepare($insert);
 
 
-            $this->pdo->prepare($sql)->execute(array($v->idVehiculo, $v->idUsuario, $v->idTipoVehiculo, $v->marca, $v->placa));
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
-        }
-    }
-
-    public function editar($v) {
-
-        try {
-            $sql = "UPDATE vehiculos SET id_usuarios = ?, tipo_vehiculo = ?, marca = ?, placa = ? WHERE id_vehiculo = ?";
+            $into->bindParam(':id', $id);
+            $into->bindParam(':idu', $idusuario);
+            $into->bindParam(':tip', $tipo);
+            $into->bindParam(':mar', $marca);
+            $into->bindParam(':pla', $placa);
+          
 
 
-            $this->pdo->prepare($sql)->execute(array($v->idUsuario, $v->idTipoVehiculo, $v->marca, $v->placa, $v->idVehiculo));
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
-        }
-    }
-    
-    public function listar(){
-        
-        try {
-            $sql = "SELECT * FROM vehiculos";
-
-
-            $r = $this->pdo->prepare($sql);
-            $r->execute();
-            return $r->fetchAll(PDO::FETCH_OBJ);
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
-        }
-        }
-    
-    public function listarVehiculo($id){
-        
-        try {
-            $sql = "SELEC * FROM vehiculos WHERE id_vehiculo = ?";
-            $r = $this->pdo->prepare($sql);
-            $r->execute(array($id->idVehiculo));
-            return $r->fetch(PDO::FETCH_OBJ);
-        } catch (Exception $exc) {
-            echo die($exc->getMessage());
-        }
-        }
-        
-         public function eliminar($id){
-        
-        try {
-            $sql = "DELETE FROM vehiculos WHERE id_vehiculo = ?";
-            $r = $this->pdo->prepare($sql);
-            $r->execute(array($id->idVehiculo));
+            $into->execute();
             
+            echo "Inserción exitosa";
         } catch (Exception $exc) {
-            echo die($exc->getMessage());
+            echo "No se pudo ejecutar la inserción". $exc->getTraceAsString();
         }
-        }
+            
         
-     
+    }
+
+    public function consultar() {
+
+        try {
+            $result = array();
+
+            $consula = $this->conexion->query("SELECT * FROM vehiculos");
+
+            while ($filas = $consula->fetch(PDO::FETCH_ASSOC)) {
+                $this->result[] = $filas;
+            }
+            return $this->result;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
+    
+    public function consultarId($id) {
+
+        try {
+            
+            $sql='SELECT * FROM usuarios WHERE cedula = :ced';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->execute();
+            $resul= $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
+    
+    //---- FUNÇÃO DE EXCLUSÃO DE DADOS---- //
+
+    public function eliminar($id) {
+
+        try {
+            $delete = 'DELETE FROM vehiculos WHERE id_vehiculo = :v';
+            $result = $this->conexion->prepare($delete);
+            $result->bindParam(':v', $id);
+            $result->execute();
+            echo "Eliminación exitosa";
+        } catch (Exception $exc) {
+            echo "No se pudo eliminar el usuario". $exc->getTraceAsString();
+        }
+    
+    }
+
+
+        
+    public function actualizar($cedula, $nombre, $apellido,$fecha, $correo, $contrasena) {
+
+        try {
+            $update = 'UPDATE usuarios set nombre = :nom, apellido = :ap, fechaNacimiento = :fe, correo = :co, contraseña = :con WHERE cedula = :ced';
+
+            $up = $this->conexion->prepare($update);
+
+
+            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':nom', $nombre);
+            $up->bindParam(':ap', $apellido);
+            $up->bindParam(':fe', $fecha);
+            $up->bindParam(':co', $correo);
+            $up->bindParam(':con', $contrasena);
+
+
+
+            $up->execute();
+
+
+            echo "Actualización exitosa";
+        } catch (Exception $exc) {
+            echo "Actualización fallida". $exc->getTraceAsString();
+        }
+        }
 
 }
