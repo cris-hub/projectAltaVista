@@ -15,23 +15,21 @@
         <ul class="nav">
 
             <li class="active">
-                <a href="user.html">
+                <a href="<?php echo VIEW ?>/app/administrador/listarResidentes.php">
                     <i class="material-icons">person</i>
                     <p>Mi perfil</p>
                 </a>
             </li>
+            
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="material-icons">face</i>
                     <span class="notification">Administrador</span>
                     <p class="hidden-lg hidden-md">usuarios</p>
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Nuevo Residente</a></li>
-                    <li><a href="app/administrador/listarResidentes.php">Ver Residentes</a></li>
-
-                </ul>
+               
             </li>
+            
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="material-icons">account_circle</i>
@@ -39,8 +37,8 @@
                     <p class="hidden-lg hidden-md">usuarios</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Nuevo Residente</a></li>
-                    <li><a href="#">Ver Residentes</a></li>
+                    <li><a  href="<?php echo VIEW ?>/app/administrador/nuevoUsuario.php">Nuevo Residente</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/administrador/listarResidentes.php">Ver Residentes</a></li>
 
                 </ul>
             </li>
@@ -51,8 +49,8 @@
                     <p class="hidden-lg hidden-md">usuarios</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Nuevo Residente</a></li>
-                    <li><a href="#">Ver Residentes</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/vehiculos/nuevoVehiculo.php">Nuevo Vehiculo</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/vehiculos/listarVehiculo.php">Ver Vehiculos</a></li>
 
                 </ul>
             </li>
@@ -63,8 +61,8 @@
                     <p class="hidden-lg hidden-md">Notifications</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Registrar Vehiculo</a></li>
-                    <li><a href="#">Ver Vehiculos</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/paqueaderos/nuevoParqueadero.php">Registrar Parqueadero</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/parquederos/listarParqueadero.php">Ver Paqueaderos</a></li>
 
                 </ul>
             </li>
@@ -75,8 +73,8 @@
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Ver Parqueaderos</a></li>
-                    <li><a href="#">Ver estados Parqueaderos</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/parquederos/asignarParqueadero.php">Asignar parqueaderos</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/parquederos/listarParqueaderoDisponible.php">Ver paqueaderos disponibles</a></li>
 
                 </ul>
             </li>
@@ -87,39 +85,35 @@
                     <p class="hidden-lg hidden-md">pagos</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Consultar Soportes de pago</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/pagos/listarPago.php">Ver pagos</a></li>
 
-                    <li><a href="#">Estado Pago</a></li>
-                    <li><a href="#">agregar sopore pago pago</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="material-icons">description</i>
-                    <span class="notification">Reportes</span>
+                    <span class="notification">Reportes de apartamentos</span>
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
-                <!-- <ul class="dropdown-menu">
-                        <li><a href="#">Generar reporte por mora</a></li>
-                        <li><a href="#">Generar reporte por parqueadero</a></li>
-                        <li><a href="#">Ver reportes</a></li>
+                 <ul class="dropdown-menu">
+                    <li><a href="<?php echo VIEW ?>/app/reportes/reporteApartamento.php">Generar reporte de los apartamentos</a></li>
                         
                         
-                </ul> -->
+                        
+                </ul> 
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="material-icons">report_problem</i>
-                    <span class="notification">Apartamentos en mora</span>
+                    <span class="notification">Reportes de parqueadero</span>
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
-                <!-- <ul class="dropdown-menu">
-                        <li><a href="#">Generar reporte por mora</a></li>
-                        <li><a href="#">Generar reporte por parqueadero</a></li>
-                        <li><a href="#">Ver reportes</a></li>
+                <ul class="dropdown-menu">
+                        <li><a href="<?php echo VIEW ?>/app/reportes/reporteParqueadero.php">Generar reporte de parqueadero</a></li>
                         
                         
-                </ul> -->
+                        
+                </ul>
             </li>
 
 
