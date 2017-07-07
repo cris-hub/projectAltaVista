@@ -91,14 +91,16 @@ class Vehiculo {
     
     //---- FUNÇÃO DE EXCLUSÃO DE DADOS---- //
 
-    public function eliminar($id) {
+    public function consultarUsuarioVehiculo($id) {
 
         try {
-            $delete = 'DELETE FROM vehiculos WHERE id_vehiculo = :v';
+            $delete = 'SELECT * FROM vehiculos WHERE id_vehiculo = :v';
             $result = $this->conexion->prepare($delete);
             $result->bindParam(':v', $id);
             $result->execute();
-            echo "Eliminación exitosa";
+            $resul= $result->fetchAll();
+            return $resul;
+      
         } catch (Exception $exc) {
             echo "No se pudo eliminar el usuario". $exc->getTraceAsString();
         }

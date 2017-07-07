@@ -6,6 +6,8 @@ require_once(FOLDER_PROJECT . "/model/UsuarioHasApartamento.php");
 
 
 
+$id=$_SESSION['cedula'];
+
 
 $pago= new Pago();
 $usuariohas= new UsuarioHasApartamento();

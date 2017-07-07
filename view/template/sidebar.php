@@ -73,8 +73,7 @@
                     <p class="hidden-lg hidden-md">parqueaderos</p>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo VIEW ?>/app/parqueaderos/asignarParqueadero.php">Asignar parqueaderos</a></li>
-                    <li><a href="<?php echo VIEW ?>/app/parqueaderos/listarParqueaderoDisponible.php">Ver paqueaderos disponibles</a></li>
+                    <li><a href="<?php echo VIEW ?>/app/solicitudes/listarSolicitudA.php">Asignar parqueaderos</a></li>
 
                 </ul>
             </li>

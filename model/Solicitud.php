@@ -58,7 +58,7 @@ class Solicitud {
         try {
             $result = array();
 
-            $consula = $this->conexion->query("SELECT * FROM pagos");
+            $consula = $this->conexion->query("SELECT * FROM solicitudes");
 
             while ($filas = $consula->fetch(PDO::FETCH_ASSOC)) {
                 $this->result[] = $filas;
@@ -105,17 +105,16 @@ class Solicitud {
         }
     }
     
-       public function login($id,$con) {
+       public function cambiarEstado($id,$con) {
 
         try {
             
-            $sql='SELECT * FROM usuarios WHERE cedula = :ced and contraseña = :con';
+            $sql='UPDATE solicitudes SET estado = :con WHERE id_solicitude = :ced ';
             $consula = $this->conexion->prepare($sql);
             $consula->bindParam(':ced', $id);
             $consula->bindParam(':con', $con);
             $consula->execute();
-            $resul= $consula->fetchAll();
-            return $resul;
+           echo "Cambio exitoso";
         } catch (Exception $e) {
 
             echo $e->getTraceAsString();

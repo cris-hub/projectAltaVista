@@ -82,6 +82,23 @@ class Parqueadero {
             echo $e->getMessage();
         }
     }
+    
+     public function consultarEstado($id) {
+
+        try {
+
+            $sql = 'SELECT * FROM parqueaderos WHERE id_parqueadero = :ced';
+            $consula = $this->conexion->prepare($sql);
+            $consula->bindParam(':ced', $id);
+            $consula->execute();
+            $resul = $consula->fetchAll();
+            return $resul;
+        } catch (Exception $e) {
+
+            echo $e->getTraceAsString();
+            echo $e->getMessage();
+        }
+    }
 
     public function consultarRoles($id) {
 
@@ -133,21 +150,19 @@ class Parqueadero {
         }
     }
 
-    public function bloquear($cedula, $est) {
+    public function cambiarEstadoAd($id, $est) {
 
         try {
 
-            $update = 'UPDATE usuarios SET estado = :es WHERE cedula = :ced';
+            $update = 'UPDATE parqueaderos SET estado = :es WHERE id_parqueadero = :ced';
 
             $up = $this->conexion->prepare($update);
-
-
-            $up->bindParam(':ced', $cedula);
+            $up->bindParam(':ced', $id);
             $up->bindParam(':es', $est);
             $up->execute();
 
 
-            echo "Bloqueo exitoso";
+            echo "Cambio de estado exitoso";
         } catch (Exception $exc) {
             echo "Bloqueo fallido" . $exc->getTraceAsString();
         }
