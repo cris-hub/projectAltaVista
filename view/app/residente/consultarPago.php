@@ -70,7 +70,25 @@ if($_SESSION['ac']=!'activo'){
                                                        
                                                             <td><?php echo $r['estado']; ?></td>
                                                             <td><?php echo $r['url_documento']; ?></td>
-                                                           
+                                                                       
+                                                            <td> <?php    
+                                                   $path = "files/".$r['id_apartamento'];
+                                                   if (file_exists($path)) {
+                                                        $directorio = opendir($path);
+                                                       while ($archivo = readdir($directorio))
+                                                        {
+                                                            if (!is_dir($archivo)) {
+                                                                echo "<div data='".$path."/".$archivo.
+                                                                       "'><a href='".$path."/".$archivo." 'title = 'Ver Arvicho Adjunto' ><span class = 'glyphicon gyphicon-picture' ></span></a>";
+                                                                        echo "$archivo <a href = '#' class = 'delete' title= 'Ver Archivo Adjunto' > <span class = 'glyphicon glyphicon-trash' aria-hiden='true' ></spand></a></div>";
+                                                                       echo "<img src = 'files/".$r['id_apartamento']."/$archivo' width = '300' />";
+                                                                        
+                                                                
+                                                              
+                                                            }
+                                                        }
+                                                    }
+//                                                    ?></td>
 
                                                     </tr>
                                                 <?php endforeach; ?>
